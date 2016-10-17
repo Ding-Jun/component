@@ -1,0 +1,20 @@
+$backgroundColor: #a3afcb;
+$backgroundColorHover: #6185eb;
+$textColor:#fff;
+.nav-item a{
+  display:block;
+  height:35px;
+  width:180px;
+  overflow:hidden;
+  line-height:35px;
+  background:$backgroundColor;
+  margin:0 0 0 0;
+  border-bottom:1px solid #eef2fa;
+  text-align:left;
+  padding:0 0 0 10px;
+  font-size:14px;
+  color:$textColor;}
+.nav-item a:hover{
+  background:$backgroundColorHover;
+  color:$textColor;
+}
