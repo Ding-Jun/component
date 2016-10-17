@@ -14,6 +14,15 @@ class Button extends React.Component{
     onClick() {},
     loading: false,
   };
+  static propTypes = {
+    type: React.PropTypes.string,
+    htmlType: React.PropTypes.oneOf(['submit', 'button', 'reset']),
+    onClick: React.PropTypes.func,
+    loading: React.PropTypes.bool,
+    className: React.PropTypes.string,
+    title:React.PropTypes.node
+  };
+
   handleClick = (e) => {
     this.props.onClick(e);
   }

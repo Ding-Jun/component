@@ -8,6 +8,8 @@ class Card extends React.Component{
       super(props);
       // Operations usually carried out in componentWillMount go here
     }
+
+
     render(){
         return (
          <div style={this.props.style} className="card">
