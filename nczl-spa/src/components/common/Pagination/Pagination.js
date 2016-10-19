@@ -60,8 +60,8 @@ class Pagination extends React.Component {
       postPage = totalPage;
     }
 
-    pageView.push(<a key={-1} href="#" data-page={1} onClick={onClick}>{"<<"}</a>);
-    pageView.push(<a key={-2} href="#" data-page={prePage} onClick={onClick}>{"<"}</a>);
+    pageView.push(<a key={-1} href="#" data-page={1} onClick={onClick}>{'<<'}</a>);
+    pageView.push(<a key={-2} href="#" data-page={prePage} onClick={onClick}>{'<'}</a>);
     for (var i = startPage; i <= endPage; i++) {
       if (i != curPage) {
         pageView.push(<a key={i} href="#" data-page={i} onClick={onClick}>{i}</a>);
@@ -79,7 +79,7 @@ class Pagination extends React.Component {
   render() {
     var page = this.props.page;
     var pageView=null;
-    if("totalPage" in page && page.totalPage!=0){
+    if('totalPage' in page && page.totalPage!=0){
       pageView=this.getPages(this.props.page, this.props.onClick);
     }
     return (

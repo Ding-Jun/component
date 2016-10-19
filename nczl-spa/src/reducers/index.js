@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux'
-import userReducer from './userReducer'
-
+import loginReducer from './loginReducer'
+import { routerReducer } from 'react-router-redux';
 const rootReducer = combineReducers({
-  userReducer
+  routing: routerReducer,
+  profile:loginReducer
 })
 
 export default rootReducer

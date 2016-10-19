@@ -1,10 +1,13 @@
 /**
  * Created by admin on 2016/10/17.
  */
-export const QUERY_USER_LIST = 'QUERY_USER_LIST'
+export const LOG_IN = 'LOG_IN'
+export const LOG_OUT = 'LOG_OUT'
+export const login = (userName) => ({
+  type: LOG_IN,
+  payload:userName
+})
 
-export const queryUserList = (targetPage=1,payload={}) => ({
-  type: QUERY_USER_LIST,
-  targetPage:targetPage,
-  payload:payload
+export const logout=()=>({
+  type:LOG_OUT
 })

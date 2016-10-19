@@ -19,7 +19,7 @@ class HomeNav extends React.Component {
           <NavItem><Link to="/column/preview"><img src={lt22}/>专栏管理</Link></NavItem>
           <NavItem><Link to="/article/preview"><img src={lt22}/>文章管理</Link></NavItem>
 
-          <NavItem><Link to="buyList/preview"><img src={lt22}/>订阅信息</Link></NavItem>
+          <NavItem><Link to="/buyList/preview"><img src={lt22}/>订阅信息</Link></NavItem>
           <NavItem><Link to="articlereview/preview"><img src={lt22}/>文章审核</Link></NavItem>
           <NavItem><Link to="comment/preview"><img src={lt22}/>评论审核</Link></NavItem>
           <NavItem><Link to="redPacket/preview"><img src={lt22}/>红包管理</Link></NavItem>

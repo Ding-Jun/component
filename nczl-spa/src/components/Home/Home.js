@@ -6,18 +6,28 @@ import React from 'react'
 import HomeHeader from './HomeHeader'
 import HomeNav from './HomeNav'
 import HomeContent from './HomeContent'
+import LoginForm from '../LoginForm'
 class Home extends React.Component{
     constructor(props){
       super(props);
       // Operations usually carried out in componentWillMount go here
     }
     render(){
+      const {profile,actions}=this.props;
+      var elem=<LoginForm actions={actions}/>
+
+      if(profile.isLogin){
+        elem=<div className="home-view">
+          <HomeHeader profile={profile} actions={actions}/>
+          <HomeNav/>
+          <HomeContent >{this.props.children}</HomeContent>
+        </div>
+      }
         return (
-         <div className="home-view">
-           <HomeHeader/>
-           <HomeNav/>
-           <HomeContent >{this.props.children}</HomeContent>
-         </div>
+          <div>
+            {elem}
+          </div>
+
         )
     }
 }

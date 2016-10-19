@@ -6,12 +6,48 @@ import 'core-js/fn/object/assign';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, hashHistory, IndexRoute} from 'react-router'
-import { createStore, combineReducers,applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-import createLogger from 'redux-logger'
+import { Provider } from 'react-redux';
+import { hashHistory, Router } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 
-import App from './components/Main';
+import configureStore from './stores';
+import routes from './routes';
+
+const store = configureStore();
+console.log("initial state:",store.getState());
+const history = syncHistoryWithStore(hashHistory, store);
+/*
+import {login,logout} from './actions'
+
+store.dispatch(login("lisi"));
+store.dispatch(logout("lisi"));
+*/
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Router history={history} routes={routes} />
+  </Provider>,
+  document.getElementById('app')
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+//import redux from 'redux'
+//import { combineReducers ,createStore } from 'redux'
+ //import {Router, Route, hashHistory, IndexRoute} from 'react-router'
 //import HomeView from './components/HomeView'
 import ColumnManage, {ColumnPreview, ColumnDetail} from './components/ColumnManage'
 import ArticleManage, {ArticlePreview, ArticleDetail} from './components/ArticleManage'
@@ -25,83 +61,6 @@ import AdminManage, {AdminPreview, AdminDetail} from './components/AdminManage'
 
 
 
-
-var userReducer = function (state = {}, action) {
-  console.log('userReducer was called with state', state, 'and action', action)
-
-  switch (action.type) {
-    case 'SET_NAME':
-      return {
-        ...state,
-        name: action.name
-      }
-    default:
-      return state;
-  }
-}
-var itemsReducer = function (state = [], action) {
-  console.log('itemsReducer was called with state', state, 'and action', action)
-
-  switch (action.type) {
-    case 'ADD_ITEM':
-      return [
-        ...state,
-        action.item
-      ]
-    default:
-      return state;
-  }
-}
-
-var reducer = combineReducers({
-  speaker: function (state = {}, action) {
-    console.log('speaker was called with state', state, 'and action', action)
-
-    switch (action.type) {
-      case 'SAY':
-        return {
-          ...state,
-          message: action.message
-        }
-      default:
-        return state;
-    }
-  }
-})
-const middleware = [ thunk ]
-if (process.env.NODE_ENV !== 'production') {
-  middleware.push(createLogger())
-}
-
-var store_0 = createStore(reducer,applyMiddleware(...middleware));
-var sayActionCreator = function (message) {
-  return {
-    type: 'SAY',
-    message
-  }
-}
-var asyncSayActionCreator_1 = function (message) {
-  return function (dispatch) {
-    setTimeout(function () {
-      console.log(new Date(), 'Dispatch action now:')
-      dispatch({
-        type: 'SAY',
-        message
-      })
-    }, 2000)
-  }
-}
-console.log("\n", 'Running our normal action creator:', "\n")
-console.log(new Date());
-store_0.dispatch(asyncSayActionCreator_1("haha"))
-
-console.log(new Date(),process.env);
-console.log('store_0 state after action SAY:', store_0.getState())
-store_0.dispatch({
-  type: 'SET_NAME',
-  name: 'bobo'
-})
-console.log('store_0 state after initialization:', store_0.getState())
 // Render the main component into the dom
 ReactDOM.render(
   <Router history={hashHistory}>
@@ -144,4 +103,4 @@ ReactDOM.render(
     </Route>
 
   </Router>
-  , document.getElementById('app'));
+  , document.getElementById('app'));*/

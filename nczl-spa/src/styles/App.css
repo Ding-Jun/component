@@ -92,3 +92,34 @@ select{
 .total{ padding:20px 0 ; display:block; overflow:hidden; font-size:14px; text-align:left}
 
 .xe{ float:right; font-size:14px!important; padding:0; color:#555;}
+
+
+.login-bg{ background:#fff url(../images/login_bg.jpg) no-repeat center 0;height:100% ; width:100%; position:absolute;}
+
+.login-modal{ width:516px; margin:100px auto 0; height:456px; background:url(../images/loginm.png) no-repeat 0 0;}
+.login-copyright{ display:block; overflow:hidden; padding:30px 0; color:#a3a2a2;}
+.loginc{ display:block; overflow:hidden; width:430px; margin:0 auto; padding:190px 0 0 0;}
+.loginc li{ display:block; height:80px; position:relative;}
+
+.linput1 , .linput2 , .linput3{ color:#999; font-size:18px; padding:10px 8px 10px 40px; border:1px solid #dcdcdc; width:372px; border-radius:3px;}
+.itp{ position:absolute; z-index:99; left:45px; top:11px; font-size:18px; color:#b7b7b7;}
+.yzm{ position:absolute; z-index:99; right:10px; top:7px;display:inline-block}
+.linput1{ background:#fff url(../images/li1.png) no-repeat 12px center;}
+.linput2{ background:#fff url(../images/li2.png) no-repeat 11px center;}
+.linput3{ background:#fff url(../images/li3.png) no-repeat 10px center;}
+
+.lbtn {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  background:#0265df;
+  border: 0px solid #fff;
+  width:420px;
+  height:44px;
+  line-height:44px;
+  display:inline;
+  border-radius:4px;
+}
+.lbtn:hover{
+  background:#0455a7; cursor:pointer
+}
