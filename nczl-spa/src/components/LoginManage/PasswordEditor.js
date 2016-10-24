@@ -32,7 +32,7 @@ class PasswordEditor extends React.Component {
     //console.log("form",elem instanceof Input)
     //console.log("form2",elem2 instanceof Input)
     this.openModal();
-    this.props.actions.changePassword(this.refs.newPassword.state.value);
+    this.props.actions.changePassword(this.props.form.getFieldValue('newPassword'));
   }
   handleOk(e){
     e.preventDefault();
@@ -45,7 +45,6 @@ class PasswordEditor extends React.Component {
   }
   validateEquals(rule, value, callback) {
     const {getFieldValue}=this.props.form;
-    console.log("new confirm",getFieldValue('newPassword'),getFieldValue('confirmPassword'))
     var err = !(getFieldValue('newPassword') == getFieldValue('confirmPassword'))
     if (err) {
       callback(new Error(rule.message));
@@ -67,6 +66,7 @@ class PasswordEditor extends React.Component {
       validate: true,
       rules: [
         {type: 'char-normal', message: '含有非法字符'},
+        {type: 'length',min:1,message:'密码不能为空'},
         {type: 'length',min:6,max:16,message:'密码长度为6-16位'}
       ]
     })

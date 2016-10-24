@@ -11,8 +11,6 @@ import {uuid} from '../util'
  * @param options  暂时没用
  */
 function createForm(options) {
-
-  console.log("I m coming")
   function decorate(WrappedComponent) {
     class InnerComponent extends React.Component {
       constructor(props){
@@ -29,9 +27,10 @@ function createForm(options) {
        * @param options
        */
       getFieldDecorator(id,options){
+        this.fields=this.fields||{};
         this.fields[id]= this.fields[id]||{};
-        this.fields[id].value=options.initialValue||'';
-        this.fields[id].rules=options.rules;
+        if(this.fields[id].value===undefined){this.fields[id].value= options.initialValue||''};
+        this.fields[id].rules=this.fields[id].rules||options.rules;
         return {
           id:id,
           onChange:this.onChangeValidate.bind(this,id)
@@ -48,12 +47,9 @@ function createForm(options) {
        * @param value
        */
       validateField(name,value){
-        console.log("debug validateField",name,value)
         var field =this.fields[name];
         field.value=value;
-        console.log("debug validateField fields",field)
         if(field.rules && field.rules.length>0){
-          console.log("debug validateField rules",field.rules)
           field.errors=[];
           field.validating=true;
           field.key=uuid();
@@ -94,7 +90,6 @@ function createForm(options) {
        */
       getFieldError(name){
         var errors =this.fields[name].errors||[];
-        console.log("getFieldError2",errors)
         for(var i=0;i<errors.length;i++){
           if(errors[i]){
             return errors[i];
@@ -105,7 +100,6 @@ function createForm(options) {
       render() {
 
 
-        console.log("createForm render")
         const formProps={
           form:{
             getFieldDecorator:this.getFieldDecorator.bind(this),

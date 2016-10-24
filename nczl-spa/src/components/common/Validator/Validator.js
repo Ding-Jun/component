@@ -11,7 +11,6 @@ class Validator {
    * @returns {boolean}
    */
   static validate(rules, value, callback) {
-    console.log("debug validate", rules, value, callback)
     var err = false;
     //console.log("start validate")
     rules = rules || [];
