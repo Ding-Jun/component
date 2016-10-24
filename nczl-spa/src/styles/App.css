@@ -74,6 +74,7 @@ select{
   background-color: #fff;
 }
 
+
 .home-view{ overflow:hidden; display:block;}
 .home-header{
   margin:0px auto;
@@ -84,7 +85,7 @@ select{
   text-align:left;
   overflow:hidden;
 }
-.home-nav { position:absolute; left:0px; top:80px; width:190px; background:#e1e5ee;}
+.home-nav { position:absolute; left:0px; top:80px; width:190px; background:#e1e5ee;height: 100%}
 .home-content { position:absolute; left:190px; top:80px; right:0px; }
 .indexbg{ position:absolute; background:rgba(0 , 0 , 0 , .5); width:100%; z-index:1; display:none;}
 
@@ -92,6 +93,11 @@ select{
 .total{ padding:20px 0 ; display:block; overflow:hidden; font-size:14px; text-align:left}
 
 .xe{ float:right; font-size:14px!important; padding:0; color:#555;}
+
+.login-info{ height:37px; line-height:37px; background:url(../images/user_bg.png) no-repeat 0 center; display:inline-block; padding:0 0px 0 30px; color:#fff; margin:27px 0 0 30px;}
+.login-info a{ color:#08daf9; padding:0 0 0 5px; text-decoration:underline;}
+.login-info a:Hover , .data a:Hover{ color:#fef398;}
+.login-info img{ padding:0 0 3px 0;}
 
 
 .login-bg{ background:#fff url(../images/login_bg.jpg) no-repeat center 0;height:100% ; width:100%; position:absolute;}
@@ -122,4 +128,8 @@ select{
 }
 .lbtn:hover{
   background:#0455a7; cursor:pointer
+}
+
+.hide{
+  display: none;
 }

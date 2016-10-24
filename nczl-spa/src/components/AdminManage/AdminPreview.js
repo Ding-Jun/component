@@ -15,7 +15,8 @@ class AdminPreview extends React.Component {
     this.state = {
       page: {
         rowData:[]
-      }
+      },
+      loading:true
     }
   }
 
@@ -26,6 +27,9 @@ class AdminPreview extends React.Component {
 
     event.preventDefault();
     var targetPage = event.currentTarget.getAttribute("data-page");
+    this.setState({
+      loading:true
+    })
     this.queryAdminList(targetPage);
   }
   queryAdminList(targetPage,nameFilter={}){
@@ -38,7 +42,8 @@ class AdminPreview extends React.Component {
           if(rm.code==1){
             console.log('debug',rm.result);
             this.setState({
-              page:rm.result
+              page:rm.result,
+              loading:false
             })
           }
         }.bind(this)
@@ -46,34 +51,6 @@ class AdminPreview extends React.Component {
 
   }
   render() {
-    /*var dataSource = [{
-      key: '1',
-      name: '胡彦斌',
-      age: 32,
-      address: '西湖区湖底公园1号'
-    }, {
-      key: '2',
-      name: '胡彦祖',
-      age: 42,
-      address: '西湖区湖底公园1号'
-    }];
-
-    const columns = [{
-      title: '姓名',
-      dataIndex: 'name',
-      width: "20%",
-      key: 'name'
-    }, {
-      title: '年龄',
-      dataIndex: 'age',
-      width: "50%",
-      key: 'age'
-    }, {
-      title: '住址',
-      dataIndex: 'address',
-      width: "20%",
-      key: 'address'
-    }];*/
     const columns = [{
       title: '用户名',
       dataIndex: 'username',
@@ -106,13 +83,14 @@ class AdminPreview extends React.Component {
         )
       }
     });
+    console.log("loading",this.state.loading)
     return (
       <Card title={<span>管理员管理</span>}>
         <div className="total">
           <span className="xe"><Button prefixCls="add-btn" onClick={this.handleQueryAdmin.bind(this)}><img src={iconAdd}/> 新增</Button></span>管理员名称：
           <input className="input1" type="text"/> <Button>搜索</Button>
         </div>
-        <Table dataSource={dataSource} columns={columns}/>
+        <Table dataSource={dataSource} columns={columns} loading={this.state.loading}/>
         <Pagination page={this.state.page} onClick={this.handleQueryAdmin.bind(this)}/>
       </Card>
     )

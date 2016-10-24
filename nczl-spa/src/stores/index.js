@@ -2,13 +2,14 @@
  * Created by admin on 2016/10/18.
  */
 //import redux ,{createStore} from 'redux'
+import { compose ,createStore ,applyMiddleware} from 'redux'
+import { routerMiddleware } from 'react-router-redux'
 import reducers from '../reducers'
-
-
-import { compose ,createStore } from 'redux'
-
-export default function(initialState){
+export default function(history,initialState){
   const store =createStore(reducers, initialState, compose(
+    applyMiddleware(
+      routerMiddleware(history)
+    ),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   ));
 

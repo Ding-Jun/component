@@ -11,7 +11,7 @@ import RedPacketManage, {RedPacketPreview, RedPacketDetail} from './components/R
 import UserManage, {UserPreview, UserDetail} from './components/UserManage'
 import MessagePush, {MessagePreview, MessageDetail} from './components/MessagePush'
 import AdminManage, {AdminPreview, AdminDetail} from './components/AdminManage'
-
+import PasswordEditorContainer from './containers/PasswordEditorContainer'
 
 const routes = [
   {
@@ -19,10 +19,14 @@ const routes = [
     component: App,
     childRoutes: [
       {
+        path:'password',
+        component:PasswordEditorContainer
+      },
+      {
         path: 'column',
         component: ColumnManage,
         childRoutes: [
-          {path: '/column/preview', component: ColumnPreview},
+          {path: '/column/preview/page/:targetPage', component: ColumnPreview},
           {path: '/column/detail', component: ColumnDetail}
         ]
       },
@@ -31,7 +35,7 @@ const routes = [
         component: ArticleManage,
         childRoutes: [
           {path: '/article/preview', component: ArticlePreview},
-          {path: '/article/detail', component: ArticleDetail}
+          {path: '/article/detail/:type/:id', component: ArticleDetail}
         ]
       },
       {

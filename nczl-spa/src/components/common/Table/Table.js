@@ -15,7 +15,8 @@ class Table extends React.Component {
 
   static defaultProps = {
     columns: [],
-    dataSource: []
+    dataSource: [],
+    loading:false
   };
   getHeader(columns){
 
@@ -30,6 +31,9 @@ class Table extends React.Component {
   }
   getRows(datas,columns){
     var rows;
+    if(this.props.loading){
+      return <tbody><TableRow><TableCell colSpan={columns.length}>加载中 <dot>...</dot></TableCell></TableRow></tbody>
+    }
     if(datas.length==0){
       return <tbody><TableRow><TableCell colSpan={columns.length}>没有数据</TableCell></TableRow></tbody>
     }

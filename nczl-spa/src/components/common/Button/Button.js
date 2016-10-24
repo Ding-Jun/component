@@ -3,6 +3,7 @@
  */
 import React from 'react'
 import classnames from 'classnames'
+import {omit} from 'lodash'
 import './style'
 class Button extends React.Component{
     constructor(props){
@@ -27,21 +28,27 @@ class Button extends React.Component{
     this.props.onClick(e);
   }
     render(){
-      const props = this.props;
-      const prefixCls=props.prefixCls;
-      const className=props.className;
+
+      const {prefixCls,className,loading}=this.props;
+      const otherProps =omit(this.props,[
+        'onClick',
+        'prefixCls',
+        'className',
+        'loading'
+      ])
       const classes = classnames({
         [prefixCls]: true,
         [`${prefixCls}-text`]: true,
-        [`${prefixCls}-loading`]: props.loading,
-        [className]: props.className,
+        [`${prefixCls}-loading`]: loading,
+        [className]: !!className,
       });
+
         return (
-         <a className={classes} onClick={this.handleClick} style={props.style}>
+         <button {...otherProps} className={classes} onClick={this.handleClick}>
 
            {this.props.children}
 
-         </a>
+         </button>
         )
     }
 }

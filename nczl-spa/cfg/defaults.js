@@ -52,13 +52,13 @@ function getDefaultModules() {
         test: /\.(mp4|ogg|svg)$/,
         loader: 'file-loader'
       }
-    ],
+    ]/*,
     postLoaders: [
       {
         test: /\.js$/,
         loaders: ['es3ify-loader']
       }
-    ]
+    ]*/
   };
 }
 

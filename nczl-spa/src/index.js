@@ -13,7 +13,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore from './stores';
 import routes from './routes';
 
-const store = configureStore();
+const store = configureStore(hashHistory);
 console.log("initial state:",store.getState());
 const history = syncHistoryWithStore(hashHistory, store);
 /*

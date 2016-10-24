@@ -1,0 +1,23 @@
+
+.form-table{
+  margin:20px auto;
+  width:100%;
+  background:#fff; border-collapse: collapse;
+  border-top: 1px solid #e5e4e4;
+  border-left: 1px solid #e5e4e4;
+}
+.form-table td{
+  padding:5px;
+  line-height:22px;
+  overflow:hidden;
+  border-bottom: 1px solid #e5e4e4;
+  border-right: 1px solid #e5e4e4;
+}
+
+
+.form-item-label{width:200px !important; text-align:right; background:#f7f7f7; color:#444; font-weight:bold}
+.form-item-content{ text-align:left}
+/*
+.form-item-content a{
+  text-decoration:underline; color:#2094FD;
+}*/

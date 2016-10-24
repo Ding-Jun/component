@@ -5,7 +5,7 @@
 import React,{PropTypes} from 'react'
 import {Link} from 'react-router'
 import Logo from '../common/Logo'
-import LoginInfo from '../common/LoginInfo'
+import {LoginInfo} from '../LoginManage'
 let logoImg = require('../../images/logo.png');
 class HomeHeader extends React.Component{
     constructor(props){

@@ -3,6 +3,7 @@
  */
 import React,{PropTypes} from 'react'
 import { connect } from 'react-redux'
+import { push as sendRedirect } from 'react-router-redux'
 import { bindActionCreators } from 'redux';
 import { login,logout } from '../actions';
 import Main from '../components/Main'
@@ -12,10 +13,12 @@ class App extends React.Component{
       super(props);
       // Operations usually carried out in componentWillMount go here
     }
-
+  componentWillMount(){
+    console.log("app componentWillMount")
+  }
     render(){
         const {profile,actions}=this.props;
-
+        console.log("app render")
         return (
          <Main profile={profile} actions={actions}>{this.props.children}</Main>
         )
@@ -30,7 +33,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   /* Populated by react-webpack-redux:action */
-  const actions = { login ,logout};
+  const actions = { login ,logout,sendRedirect};
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
 }
