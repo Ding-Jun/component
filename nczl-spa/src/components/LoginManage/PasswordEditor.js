@@ -44,44 +44,49 @@ class PasswordEditor extends React.Component {
     this.props.actions.goBack();
   }
   validateEquals(rule, value, callback) {
-    var err = !(this.refs.newPassword.state.value == value)
+    const {getFieldValue}=this.props.form;
+    console.log("new confirm",getFieldValue('newPassword'),getFieldValue('confirmPassword'))
+    var err = !(getFieldValue('newPassword') == getFieldValue('confirmPassword'))
     if (err) {
-      callback(rule.message);
+      callback(new Error(rule.message));
+    }else {
+      callback()
     }
     return err;
   }
 
   render() {
-    var passwordProps = {
+    const {getFieldDecorator,getFieldError,isFiledValidating}=this.props.form
+    var passwordProps =getFieldDecorator('password', {
       validate: true,
       rules: [
         {type: 'length', min: '1', message: '原密码不能为空'}
       ]
-    }
-    var newPasswordProps = {
+    })
+    var newPasswordProps =getFieldDecorator('newPassword', {
       validate: true,
       rules: [
         {type: 'char-normal', message: '含有非法字符'},
         {type: 'length',min:6,max:16,message:'密码长度为6-16位'}
       ]
-    }
-    var confirmProps = {
+    })
+    var confirmProps =getFieldDecorator('confirmPassword', {
       validate: true,
       rules: [
         {type: 'function', validate: this.validateEquals.bind(this), message: '两次输入的密码不一致'}
       ]
-    }
+    })
     return (
       <Card title={<span>密码修改</span>}>
         <Form onSubmit={this.handleSubmit.bind(this)}>
-          <FormItem ref="form" label={"原密码："}>
+          <FormItem ref="form" label={"原密码："}  error={getFieldError('password')}>
             <Input ref="password" type="password" size="60" {...passwordProps} ></Input>
           </FormItem>
-          <FormItem label={"新密码："}>
-            <Input ref="newPassword" type="password" size="60" {...newPasswordProps}
-                   help="密码长度在6-16位之间，由字母、数字、下划线组成"></Input>
+          <FormItem label={"新密码："} help="密码长度在6-16位之间，由字母、数字、下划线组成"
+                    error={getFieldError('newPassword')}>
+            <Input ref="newPassword" type="password" size="60" {...newPasswordProps}></Input>
           </FormItem>
-          <FormItem label={"确认密码："}>
+          <FormItem label={"确认密码："} error={getFieldError('confirmPassword')}>
             <Input ref="confirmPassword" type="password" size="60" {...confirmProps}></Input>
           </FormItem>
           <FormItem >
@@ -96,5 +101,5 @@ class PasswordEditor extends React.Component {
     )
   }
 }
-
-export default PasswordEditor;
+PasswordEditor = Form.create()(PasswordEditor);
+export default  PasswordEditor;

@@ -17,6 +17,14 @@
 
 .form-item-label{width:200px !important; text-align:right; background:#f7f7f7; color:#444; font-weight:bold}
 .form-item-content{ text-align:left}
+.form-item-explain{
+  margin:0 10px;
+}
+.form-item-error{
+  color: #ff5500;
+  line-height: 100%;
+}
+
 /*
 .form-item-content a{
   text-decoration:underline; color:#2094FD;

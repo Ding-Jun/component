@@ -10,42 +10,47 @@ class Validator {
    * @param callback
    * @returns {boolean}
    */
-  static validate(rule, value, callback) {
-
+  static validate(rules, value, callback) {
+    console.log("debug validate", rules, value, callback)
     var err = false;
     //console.log("start validate")
-    switch (rule.type) {
-      case 'length':  //validate String length
-        err = this.validateLength(rule, value);
-        break;
-      case 'range': //validate Number range
-        err = this.validateRange(rule, value);
-        break;
-      case 'pattern': //validate RegExp
-        err = this.validatePattern(rule, value);
-        break;
-      case 'phoneNo': //validate RegExp
-        err = this.validatePhoneNo(rule, value);
-        break;
-      case 'char-normal':
-        if (!value) break;
-        err = this.validateCharNormal(rule, value);
-        break;
-      case 'char-chinese':
-        if (!value) break;
-        err = this.validateCharChinese(rule, value);
-      case 'function':
-        rule.validate instanceof Function ?
-          err = rule.validate(rule, value, callback) : console.warn("rule.validate is not a function ", rule)
-        //this err is not in use
-        break;
-      default:
-        console.warn("no such rule:", rule);
-    }
-    if (rule.type != 'function') {
-      err ? callback(rule.message) : callback();
-    }
+    rules = rules || [];
+    rules.forEach((rule)=> {
+      switch (rule.type) {
+        case 'length':  //validate String length
+          err = this.validateLength(rule, value);
+          break;
+        case 'range': //validate Number range
+          err = this.validateRange(rule, value);
+          break;
+        case 'pattern': //validate RegExp
+          err = this.validatePattern(rule, value);
+          break;
+        case 'phoneNo': //validate RegExp
+          err = this.validatePhoneNo(rule, value);
+          break;
+        case 'char-normal':
+          if (!value) break;
+          err = this.validateCharNormal(rule, value);
+          break;
+        case 'char-chinese':
+          if (!value) break;
+          err = this.validateCharChinese(rule, value);
+        case 'function':
+          rule.validate instanceof Function ?
+            err = rule.validate(rule, value, callback) : console.warn("rule.validate is not a function ", rule)
+          //this err is not in use
+          break;
+        default:
+          console.warn("no such rule:", rule);
+      }
+      if (rule.type != 'function') {
+        err ? callback(new Error(rule.message)) : callback();
+      }
+      return err;
+    })
     return err;
+
   }
 
   /**

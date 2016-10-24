@@ -5,6 +5,7 @@ import React from 'react'
 import classnames from 'classnames'
 import './style'
 import FormItem from './FormItem'
+import createForm from './createForm'
 class Form extends React.Component{
     constructor(props){
       super(props);
@@ -16,6 +17,7 @@ class Form extends React.Component{
       onSubmit(){}
     }
     static Item=FormItem;
+  static create= createForm;
     render(){
       const {prefixCls,style,className}=this.props;
       const classes = classnames({

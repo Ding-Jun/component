@@ -15,11 +15,15 @@ class FormItem extends React.Component{
   }
     render(){
       const {prefixCls,style,className,label}=this.props;
-
+      const help = this.props.error ?
+        <span className={`${this.props.prefixCls}-error`}><img src={require('./style/p.png')}/> {this.props.error.message}</span> :this.props.help ;
         return (
         <tr style={style} className={className}>
           <td className={`${prefixCls}-label`}>{label}</td>
-          <td className={`${prefixCls}-content`}>{this.props.children}</td>
+          <td className={`${prefixCls}-content`}>
+            {this.props.children}
+            <span className={`${this.props.prefixCls}-explain`}>{help}</span>
+          </td>
         </tr>
         )
     }

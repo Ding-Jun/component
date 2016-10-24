@@ -11,6 +11,8 @@ import {uuid} from '../util'
  * @param options  暂时没用
  */
 function createForm(options) {
+
+  console.log("I m coming")
   function decorate(WrappedComponent) {
     class InnerComponent extends React.Component {
       constructor(props){
@@ -46,16 +48,22 @@ function createForm(options) {
        * @param value
        */
       validateField(name,value){
+        console.log("debug validateField",name,value)
         var field =this.fields[name];
         field.value=value;
-        if(field.rules && field.length>0){
+        console.log("debug validateField fields",field)
+        if(field.rules && field.rules.length>0){
+          console.log("debug validateField rules",field.rules)
           field.errors=[];
           field.validating=true;
           field.key=uuid();
-          Validator.validate(field.rules,value, this.setFeildError.bind(this,name,key));
+          Validator.validate(field.rules,value, this.setFeildError.bind(this,name,field.key));
         }
       }
 
+      getFieldValue(name){
+        return this.fields[name].value;
+      }
       /**
        * 添加错误
        * @param name
@@ -68,9 +76,11 @@ function createForm(options) {
         if(key ==field.key){
           var errors = field.errors||[];
           errors.push(error);
-          if(error.length==field.rules.length){
+          if(errors.length==field.rules.length){
             field.validating=false;
+            this.setState({key:uuid()}) //验证完成后强制刷新View 目前没想到更好的办法
           }
+
         }
         //if not equal ,drop the error
       }
@@ -84,20 +94,25 @@ function createForm(options) {
        */
       getFieldError(name){
         var errors =this.fields[name].errors||[];
+        console.log("getFieldError2",errors)
         for(var i=0;i<errors.length;i++){
           if(errors[i]){
-            return errors[i].message;
+            return errors[i];
           }
         }
+        return null;
       }
       render() {
-        const aa=[
-          this.getFieldDecorator.bind(this),
-          tihs.isFieldValidating.bind(this)
-        ]
+
+
+        console.log("createForm render")
         const formProps={
           form:{
-
+            getFieldDecorator:this.getFieldDecorator.bind(this),
+            validateField:this.validateField.bind(this),
+            isFieldValidating:this.isFieldValidating.bind(this),
+            getFieldError:this.getFieldError.bind(this),
+            getFieldValue:this.getFieldValue.bind(this)
           }
         }
         const props={
