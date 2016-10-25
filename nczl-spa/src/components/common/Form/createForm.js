@@ -57,6 +57,23 @@ function createForm(options) {
         }
       }
 
+      /**
+       * 提交前的验证    未完成
+       * @param callBack    callBack(errors,values)
+       */
+      validateFields(callBack){
+        var values={};
+        for(var name in this.fields){
+          console.log("debug", name)
+          if(typeof name !== "function"){
+            values[name]=this.fields[name].value;
+            /**do later*/
+            }
+
+
+        }
+        callBack(null,values)
+      }
       getFieldValue(name){
         return this.fields[name].value;
       }
@@ -106,7 +123,8 @@ function createForm(options) {
             validateField:this.validateField.bind(this),
             isFieldValidating:this.isFieldValidating.bind(this),
             getFieldError:this.getFieldError.bind(this),
-            getFieldValue:this.getFieldValue.bind(this)
+            getFieldValue:this.getFieldValue.bind(this),
+            validateFields:this.validateFields.bind(this)
           }
         }
         const props={

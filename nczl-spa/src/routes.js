@@ -12,6 +12,7 @@ import UserManage, {UserPreview, UserDetail} from './components/UserManage'
 import MessagePush, {MessagePreview, MessageDetail} from './components/MessagePush'
 import AdminManage, {AdminPreview, AdminDetail} from './components/AdminManage'
 import PasswordEditorContainer from './containers/PasswordEditorContainer'
+import ArticleDetailContainer from './containers/ArticleDetailContainer'
 
 const routes = [
   {
@@ -34,8 +35,8 @@ const routes = [
         path: 'article',
         component: ArticleManage,
         childRoutes: [
-          {path: '/article/preview', component: ArticlePreview},
-          {path: '/article/detail/:type/:id', component: ArticleDetail}
+          {path: '/article/preview/page/:targetPage', component: ArticlePreview},
+          {path: '/article/detail/:type/:id', component: ArticleDetailContainer}
         ]
       },
       {

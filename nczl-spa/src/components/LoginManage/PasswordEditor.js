@@ -25,15 +25,21 @@ class PasswordEditor extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    console.log("haha", this.refs.form);
-    console.log("|inpout ", Input.defaultProps)
+    const {validateFields}=this.props.form;
+    validateFields((errors,values)=>{
+      console.log("haha handleSubmit",errors," - ",values);
+    })
+    //console.log("haha", this.refs.form);
+    //console.log("|inpout ", Input.defaultProps)
     //var elem=this.refs.form.props.children[1].props.children;
     //var elem2=this.refs.form.props.children[0];
     //console.log("form",elem instanceof Input)
     //console.log("form2",elem2 instanceof Input)
-    this.openModal();
-    this.props.actions.changePassword(this.props.form.getFieldValue('newPassword'));
+
+    //this.openModal();
+    //this.props.actions.changePassword(this.props.form.getFieldValue('newPassword'));
   }
+
   handleOk(e){
     e.preventDefault();
     this.closeModal();

@@ -3,6 +3,7 @@
  */
 import React from 'react'
 import classnames from 'classnames'
+import {omit} from 'lodash'
 import './style'
 import FormItem from './FormItem'
 import createForm from './createForm'
@@ -25,9 +26,15 @@ class Form extends React.Component{
         [`${prefixCls}-table`]: true,
         [className]: !!className,
       });
+      const otherProps = omit(this.props, [
+          'className',
+          'prefixCls',
+        'style'
+        ]
+      )
 
         return (
-         <form onSubmit={this.props.onSubmit}>
+         <form {...otherProps}>
            <table style={style} className={classes} cellSpacing={0} cellPadding={0}>
              <tbody>
              {this.props.children}
