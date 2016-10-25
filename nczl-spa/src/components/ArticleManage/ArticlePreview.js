@@ -24,7 +24,7 @@ class ArticlePreview extends React.Component {
         columnId:"",
         title:""
       },
-      searchValue:'2'
+      searchValue:''
     }
   }
 

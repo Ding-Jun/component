@@ -28,6 +28,10 @@ class PasswordEditor extends React.Component {
     const {validateFields}=this.props.form;
     validateFields((errors,values)=>{
       console.log("haha handleSubmit",errors," - ",values);
+      if(!errors){
+       // this.openModal();
+        //this.props.actions.changePassword(this.props.form.getFieldValue('newPassword'));
+      }
     })
     //console.log("haha", this.refs.form);
     //console.log("|inpout ", Input.defaultProps)
