@@ -35,7 +35,7 @@ const routes = [
         path: 'article',
         component: ArticleManage,
         childRoutes: [
-          {path: '/article/preview/page/:targetPage', component: ArticlePreview},
+          {path: '/article/preview/:columnId/:targetPage', component: ArticlePreview},
           {path: '/article/detail/:type/:id', component: ArticleDetailContainer}
         ]
       },

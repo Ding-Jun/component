@@ -3,13 +3,14 @@
  */
 import React from 'react'
 import $ from 'jquery'
-
+import {Link} from "react-router"
 import Card from '../common/Card'
 import Table from '../common/Table'
 import Button from '../common/Button'
 import Pagination from '../common/Pagination'
 import Modal from '../common/Modal'
 import Input from '../common/Input'
+
 const iconAdd = require('../../images/icon_add.gif');
 class ColumnPreview extends React.Component {
   constructor(props) {
@@ -42,13 +43,16 @@ class ColumnPreview extends React.Component {
   }
 
   queryColumnList(targetPage, nameFilter = {}) {
+    console.log("targetPagdde",targetPage)
+    var url='/nczl-web/rs/column/list?curPage=' + targetPage + '&pageSize=' + 20;
+    console.log("uuuusrl",url)
     $.ajax({
       type: 'GET',
-      url: '/nczl-web/rs/column/list?curPage=' + targetPage + '&pageSize=' + 10,
+      url: url,
       dataType: 'json',
       success: function (rm) {
+        console.log('queryColumnList debug', rm.result);
         if (rm.code == 1) {
-          console.log('debug', rm.result);
           this.setState({
             page: rm.result,
             loading: false
@@ -76,9 +80,13 @@ class ColumnPreview extends React.Component {
     })
   }
   handleEditConfirm() {
+    var url=`/nczl-web/rs/column/${this.state.modal.type}?columnName=${this.state.modal.inputValue}`;
+    if(this.state.modal.type=='edit'){
+      url+=`&id=${this.state.modal.id}`;
+    }
     $.ajax({
       type: 'POST',
-      url:`/nczl-web/rs/column/${this.state.modal.type}?columnName=${this.state.modal.inputValue}`,
+      url:url,
       dataType: 'json',
       success: function (rm) {
         if (rm.code == 1) {
@@ -135,7 +143,7 @@ class ColumnPreview extends React.Component {
       return {
         id: column.id,
         columnName: name,
-        articleCnt: count ? <a href="#">{count}</a> : count,
+        articleCnt: count ? <Link to={`/article/preview/${column.id}/1`}>{count}</Link> : count,
         operation: (
           <span>
             <a href="#" data-type="edit" data-name={name} data-id={column.id}

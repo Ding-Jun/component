@@ -2,7 +2,7 @@
  * Created by admin on 2016/10/13.
  */
 import React from 'react'
-
+import $ from 'jquery'
 import HomeHeader from './HomeHeader'
 import HomeNav from './HomeNav'
 import HomeContent from './HomeContent'
@@ -11,6 +11,9 @@ class Home extends React.Component{
     constructor(props){
       super(props);
       // Operations usually carried out in componentWillMount go here
+    }
+    componentWillMount(){
+        //this.actions.login_query()
     }
     render(){
       const {profile,actions}=this.props;

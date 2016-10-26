@@ -16,12 +16,50 @@ import routes from './routes';
 const store = configureStore(hashHistory);
 console.log("initial state:",store.getState());
 const history = syncHistoryWithStore(hashHistory, store);
-/*
-import {login,logout} from './actions'
 
-store.dispatch(login("lisi"));
-store.dispatch(logout("lisi"));
-*/
+import {login,login_query,logout} from './actions'
+
+import { createStore, applyMiddleware,combineReducers } from 'redux';
+import thunk from 'redux-thunk';
+
+var reducer = combineReducers({
+  speaker: function (state = {}, action) {
+    console.log('speaker was called with state', state, 'and action', action)
+
+    switch (action.type) {
+      case 'SAY':
+        return {
+          ...state,
+          message: action.message
+        }
+      default:
+        return state;
+    }
+  }
+})
+const store0 = createStore(
+  reducer,
+  applyMiddleware(thunk)
+);
+var asyncSayActionCreator_1 = function (message) {
+  return function (dispatch) {
+    setTimeout(function () {
+      dispatch({
+        type: 'SAY',
+        message
+      })
+    }, 2000)
+  }
+}
+
+
+
+console.log("starrrr")
+store0.dispatch(asyncSayActionCreator_1('Hi'));
+console.log("endddd")
+//store.dispatch(login("lisi"));
+//store.dispatch(logout("lisi"));
+
 
 ReactDOM.render(
   <Provider store={store}>

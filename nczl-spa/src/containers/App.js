@@ -5,7 +5,7 @@ import React,{PropTypes} from 'react'
 import { connect } from 'react-redux'
 import { push as sendRedirect } from 'react-router-redux'
 import { bindActionCreators } from 'redux';
-import { login,logout } from '../actions';
+import { login_query,logout } from '../actions';
 import Main from '../components/Main'
 
 class App extends React.Component{
@@ -14,6 +14,7 @@ class App extends React.Component{
       // Operations usually carried out in componentWillMount go here
     }
   componentWillMount(){
+    console.log(this.props.actions.login_query);
     console.log("app componentWillMount")
   }
     render(){
@@ -33,7 +34,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   /* Populated by react-webpack-redux:action */
-  const actions = { login ,logout,sendRedirect};
+  const actions = { login_query ,logout,sendRedirect};
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
 }
