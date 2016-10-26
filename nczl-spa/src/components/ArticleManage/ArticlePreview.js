@@ -21,10 +21,10 @@ class ArticlePreview extends React.Component {
       },
       loading: true,
       query:{
-        columnId:"",
+        columnId:this.props.params.columnId=="all"?'':this.props.params.columnId,
         title:""
       },
-      searchValue:'2'
+      searchValue:''
     }
   }
 

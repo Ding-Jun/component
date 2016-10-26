@@ -6,6 +6,7 @@ import {findDOMNode} from 'react-dom'
 import {omit} from 'lodash'
 import classnames from 'classnames'
 import Validator from '../Validator'
+import initEditor from '../util/tinymce'
 import './style'
 /**
  * Validator will removed in future
@@ -30,6 +31,10 @@ class Input extends React.Component {
   componentDidMount(){
     if(this.props.focus){
       findDOMNode(this.refs.input).focus()
+    }
+    if(this.props.tinymce){
+      console.log("isty")
+      initEditor(this.props.id,this.props.readOnly);
     }
   }/*
   handleChange(e) {
