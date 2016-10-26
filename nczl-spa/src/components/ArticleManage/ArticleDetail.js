@@ -137,8 +137,6 @@ class ArticleDetail extends React.Component {
       //contentType: false,
       //contentType:'multipart/form-data',
       success: function (rm) {
-
-
         if (rm.code == 1) {
           //console.log("debug",this.state)
          var {article,targetImg}=this.state;

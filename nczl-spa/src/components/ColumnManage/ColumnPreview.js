@@ -44,7 +44,7 @@ class ColumnPreview extends React.Component {
 
   queryColumnList(targetPage, nameFilter = {}) {
     console.log("targetPagdde",targetPage)
-    var url='/nczl-web/rs/column/list?curPage=' + targetPage + '&pageSize=' + 10;
+    var url='/nczl-web/rs/column/list?curPage=' + targetPage + '&pageSize=' + 20;
     console.log("uuuusrl",url)
     $.ajax({
       type: 'GET',

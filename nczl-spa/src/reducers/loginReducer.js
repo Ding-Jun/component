@@ -1,5 +1,5 @@
-import {LOG_IN, LOG_OUT,CHANGE_PASSWORD} from '../actions'
-
+import {LOG_IN, LOG_OUT,CHANGE_PASSWORD,login,logout,change_password} from '../actions'
+import $ from 'jquery'
 
 const initialState = {
   isLogin: false

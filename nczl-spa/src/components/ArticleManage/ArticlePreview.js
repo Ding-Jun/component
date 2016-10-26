@@ -52,7 +52,7 @@ class ArticlePreview extends React.Component {
     for(var arg in query){
       if(query[arg]){queryString+=`&${arg}=${query[arg]}`}
     }
-    var url=`/nczl-web/rs/article/list?curPage=${targetPage}&pageSize=5`+queryString;
+    var url=`/nczl-web/rs/article/list?curPage=${targetPage}&pageSize=20`+queryString;
     $.ajax({
       type: 'GET',
       url: url,

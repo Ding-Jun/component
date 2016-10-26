@@ -5,10 +5,18 @@
 import { compose ,createStore ,applyMiddleware} from 'redux'
 import { routerMiddleware } from 'react-router-redux'
 import reducers from '../reducers'
+import thunk from 'redux-thunk'
+import createLogger from 'redux-logger'
+
 export default function(history,initialState){
+  const middleware = [ thunk ]
+  if (process.env.NODE_ENV !== 'production') {
+    middleware.push(createLogger())
+  }
   const store =createStore(reducers, initialState, compose(
     applyMiddleware(
-      routerMiddleware(history)
+      routerMiddleware(history),
+      ...middleware
     ),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   ));
