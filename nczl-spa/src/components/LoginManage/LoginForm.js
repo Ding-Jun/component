@@ -20,13 +20,11 @@ class LoginForm extends React.Component {
     this.props.actions.sendRedirect('/');
   }
 
-  handleNameChange(value) {
-    this.setState({userName: value});
+  handleFieldChange(e) {
+    const {name,value}=e.target;
+    this.setState({[name]: value});
   }
 
-  handlePasswordChange(value) {
-    this.setState({password:value});
-  }
 
   render() {
     return (
@@ -34,12 +32,12 @@ class LoginForm extends React.Component {
         <div className="login-modal">
           <form>
             <ul className="loginc">
-              <li><Input name="" type="text" prefixCls="linput1" max="20" value={this.state.userName}
-                         afterChange={this.handleNameChange.bind(this)} validate={false} focus/>
+              <li><Input name="userName" type="text" prefixCls="linput1" max="20" value={this.state.userName}
+                         onChange={this.handleFieldChange.bind(this)} validate={false} focus/>
                 <span className="itp">{this.state.userName == "" ? '帐号' : ''}</span>
               </li>
-              <li><Input name="" type="password" prefixCls="linput2" max="20" value={this.state.password}
-                         afterChange={this.handlePasswordChange.bind(this)}/>
+              <li><Input name="password" type="password" prefixCls="linput2" max="20" value={this.state.password}
+                         onChange={this.handleFieldChange.bind(this)}/>
                 <span className="itp">{this.state.password == "" ? '密码' : ''}</span>
               </li>
             </ul>

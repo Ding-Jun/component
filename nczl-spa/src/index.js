@@ -18,7 +18,7 @@ console.log("initial state:",store.getState());
 const history = syncHistoryWithStore(hashHistory, store);
 
 import {login,login_query,logout} from './actions'
-
+/*
 import { createStore, applyMiddleware,combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
@@ -42,6 +42,7 @@ const store0 = createStore(
   applyMiddleware(thunk)
 );
 var asyncSayActionCreator_1 = function (message) {
+  console.log("asyncSayActionCreator_1 ",message)
   return function (dispatch) {
     setTimeout(function () {
       dispatch({
@@ -56,11 +57,12 @@ var asyncSayActionCreator_1 = function (message) {
 
 console.log("starrrr")
 store0.dispatch(asyncSayActionCreator_1('Hi'));
+store.dispatch(login_query())
 console.log("endddd")
 //store.dispatch(login("lisi"));
 //store.dispatch(logout("lisi"));
 
-
+*/
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history} routes={routes} />
