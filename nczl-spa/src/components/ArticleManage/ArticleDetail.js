@@ -10,15 +10,11 @@ import $ from 'jquery'
 import 'cropper'
 import Modal from '../common/Modal'
 import '../common/util/date'
-<<<<<<< HEAD
-import getObjectURL from '../common/util/getObjectUrl'
-const FromItem = Form.Item
-=======
+
 import getObjectUrl from '../common/util/getObjectUrl'
 //import TinyMCEInput from '../common/util/TinyMCEInput'
 const FromItem = Form.Item
 
->>>>>>> 6e6052fa9c820f67df42a667491a388128e6083c
 class ArticleDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -28,14 +24,11 @@ class ArticleDetail extends React.Component {
       readOnly: this.props.params.type != 'edit',
       loading: false,
       article: {columnId: 1},
-<<<<<<< HEAD
-      columns: []
-=======
+
       columns: [],
       targetImg: "",
       cropping:false,
     validateError:false
->>>>>>> 6e6052fa9c820f67df42a667491a388128e6083c
     }
   }
 
@@ -88,40 +81,6 @@ class ArticleDetail extends React.Component {
 
   handleFileChange(e) {
     e.preventDefault();
-<<<<<<< HEAD
-    console.log("debug target", e.target)
-    var file = e.target.files[0];
-    var targetImg = e.target.getAttribute("data-target");
-
-    if (!file) {
-      console.log("未选择图片")
-    }
-    else {
-      var objUrl = getObjectURL(file);
-      if (objUrl) {
-        var options = {
-          aspectRatio: targetImg != "titleImg" ? 64 / 35 : 4 / 3,
-          autoCropArea: 0.7,
-          strict: true,
-          //guides: false,
-          center: true,
-          highlight: false,
-          //dragCrop: false,
-          //cropBoxMovable: false,
-          //cropBoxResizable: false,
-          zoom: -0.2,
-          checkImageOrigin: true,
-          background: false,
-          minContainerHeight: 400,
-          minContainerWidth: 300
-        }
-        $("#img-container").html('<img  style="width: 100%;height:100%">');
-        $("#img-container img").attr("src", objUrl);
-        $("#img-container img").cropper(options);
-        this.openModal();
-        this.setState({targetImg: targetImg});
-      }
-=======
     var targetImg = e.target.getAttribute("data-target")
     var file = e.target.files[0];
     if (file) {
@@ -150,7 +109,6 @@ class ArticleDetail extends React.Component {
       $('#img-container > img').attr("src", objUrl)
       $("#img-container img").cropper(options);
       this.setState({targetImg: targetImg,cropping:true})
->>>>>>> 6e6052fa9c820f67df42a667491a388128e6083c
     }
 
   }
@@ -198,18 +156,10 @@ class ArticleDetail extends React.Component {
     this.setState({cropping:false});
   }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 6e6052fa9c820f67df42a667491a388128e6083c
   handleFieldChange(e) {
     const name = e.target.name;
     var article = this.state.article
     article[name] = e.target.value;
-<<<<<<< HEAD
-=======
-
->>>>>>> 6e6052fa9c820f67df42a667491a388128e6083c
     if (name == 'summary') {
       article[name] = e.target.value.substr(0, 50);
     }
@@ -227,11 +177,7 @@ class ArticleDetail extends React.Component {
   }
 
   closeModal() {
-<<<<<<< HEAD
-    this.setState({modalVisible: false})
-=======
     this.setState({modalVisible: false,modalMsg:null,validateError:false})
->>>>>>> 6e6052fa9c820f67df42a667491a388128e6083c
   }
 
   handleOk(e) {
@@ -254,10 +200,6 @@ class ArticleDetail extends React.Component {
 
   handleEditArticle() {
     const method = this.state.id == 'new' ? 'add' : 'edit';
-<<<<<<< HEAD
-    console.log("handleEditArticle m", method)
-    var data = new FormData($('#form')[0]);
-=======
     var content = tinymce.get('contents').getContent();
     console.log("content", content);
     console.log("handleEditArticle m", method)
@@ -280,7 +222,6 @@ class ArticleDetail extends React.Component {
       })
       return
     }
->>>>>>> 6e6052fa9c820f67df42a667491a388128e6083c
     $.ajax({
       type: 'POST',
       url: `/nczl-web/rs/article/${method}`,
@@ -303,34 +244,6 @@ class ArticleDetail extends React.Component {
     })
   }
 
-<<<<<<< HEAD
-  handleCrop(e) {
-    e.preventDefault();
-    var targetImg = this.state.targetImg;
-    var size = {
-      width: 640,
-      height: 350
-    }
-    if (targetImg == "titleImg") {
-      size.width = 200;
-      size.height = 150;
-    }
-
-    this.closeModal();
-    var $image = $('#img-container > img');
-    var dataURL = $image.cropper("getCroppedCanvas", size);
-    var imgurl = dataURL.toDataURL("image/jpeg", 0.5);
-    $("#" + targetImg).attr("src", imgurl);
-  }
-
-  handleTest(e) {
-    e.preventDefault();
-
-
-  }
-=======
->>>>>>> 6e6052fa9c820f67df42a667491a388128e6083c
-
   handleReturn(e) {
     e.preventDefault();
 
@@ -338,11 +251,7 @@ class ArticleDetail extends React.Component {
   }
 
   renderForm() {
-<<<<<<< HEAD
-    const {readOnly, article}=this.state;
-=======
     const {readOnly, article,cropping}=this.state;
->>>>>>> 6e6052fa9c820f67df42a667491a388128e6083c
     var status;
     switch (article.status) {
       case 0:
@@ -396,16 +305,6 @@ class ArticleDetail extends React.Component {
           }
         </FromItem>
         {article.stick == 1 ?
-<<<<<<< HEAD
-          <FromItem label="置顶标题图：" required={!readOnly} help="上传尺寸：640px*350px，图片格式仅限为：jpg、gif、png，文件大小为500KB以内。">
-            <div><img id="stickImg" src={article.stickImg}/></div>
-            {readOnly ? null : <span><Input ref="stickImgSrc" type="file" size="40" data-target="stickImg"
-                                            onChange={this.handleFileChange.bind(this)}/></span>}
-          </FromItem> : null}
-        <FromItem label="文章标题缩略图：" required={!readOnly} help="上传尺寸：200px*150px，图片格式仅限为：jpg、gif、png，文件大小为200KB以内。">
-          <div><img id="titleImg" src={article.titleImg}/></div>
-          {readOnly ? null : <span><Input ref="titleImgSrc" type="file" size="40" data-target="titleImg"
-=======
           <FromItem label="置顶标题图：" required={!readOnly} help={readOnly?null:"上传尺寸：640px*350px，图片格式仅限为：jpg、gif、png，文件大小为500KB以内。"}>
             <div><img id="stickImg" src={article.stickImg}/></div>
             {readOnly ? null : <span><Input ref="stickImgSrc" data-target="stickImg" type="file" size="40"
@@ -414,7 +313,6 @@ class ArticleDetail extends React.Component {
         <FromItem label="文章标题缩略图：" required={!readOnly} help={readOnly?null:"上传尺寸：200px*150px，图片格式仅限为：jpg、gif、png，文件大小为200KB以内。"}>
           <div><img id="titleImg" src={article.titleImg}/></div>
           {readOnly ? null : <span><Input ref="titleImgSrc" data-target="titleImg" type="file" size="40"
->>>>>>> 6e6052fa9c820f67df42a667491a388128e6083c
                                           onChange={this.handleFileChange.bind(this)}/></span>}
         </FromItem>
         {readOnlyContents}
@@ -427,17 +325,11 @@ class ArticleDetail extends React.Component {
 
         </FromItem>
         <FromItem label="正文：" required={!readOnly}>
-<<<<<<< HEAD
-          {readOnly ? article.contents :
-            <Input type="textarea" cols="90" rows="5" value={article.contents} name="contents"
-                   onChange={this.handleFieldChange.bind(this)}/>}
-=======
           {readOnly ? <Input key="read" id="contents" type="textarea" cols="90" rows="5" value={article.contents} name="contents" tinymce
                              readOnly/> :
             <Input key="write" id="contents" type="textarea" cols="90" rows="5" value={article.contents} name="contents" tinymce
                    />/*去掉了onCHange  有tinymce 没啥用*/}
           {/*<TinyMCEInput tinymceConfig={TINYMCE_CONFIG}></TinyMCEInput>*/}
->>>>>>> 6e6052fa9c820f67df42a667491a388128e6083c
 
         </FromItem>
         <FromItem>
@@ -449,34 +341,18 @@ class ArticleDetail extends React.Component {
   }
 
   render() {
-<<<<<<< HEAD
-    const {readOnly, loading}=this.state;
-=======
     const {readOnly, loading,cropping,validateError}=this.state;
->>>>>>> 6e6052fa9c820f67df42a667491a388128e6083c
 
     //console.log(this.props.params.type,this.props.params.id);
     return (
       <Card ref="card" title={<span>{readOnly ? '文章详细' : '文章编辑'}</span>}>
         {loading ? '加载中' : this.renderForm()}
-
-<<<<<<< HEAD
-        <button onClick={this.handleTest.bind(this)}>click</button>
-        <Modal title="信息" visible={this.state.modalVisible} closable={false}
-               onOk={this.handleOk.bind(this)}
-        >{this.state.modalMsg}
-          <div id="img-container" style={{maxHeight: "500px"}}>
-            <img src="../../images/head1.jpg" style={{width: "280px", height: "280px"}}/>
-          </div>
-          <button className="btn" id='confirmBtn' onClick={this.handleCrop.bind(this)}>222</button>
-=======
         <Modal title={cropping?"图片裁剪":"信息"} visible={this.state.modalVisible} closable={true} onClose={this.closeModal.bind(this)}
                onOk={cropping?this.handleCrop.bind(this):(validateError?this.closeModal.bind(this):this.handleOk.bind(this))}
         >{this.state.modalMsg}
           <div className={cropping?null:"hide"} id="img-container" style={{maxHeight: "500px"}}>
             <img src="../../images/head1.jpg" style={{width: "280px", height: "280px"}}/>
           </div>
->>>>>>> 6e6052fa9c820f67df42a667491a388128e6083c
         </Modal>
 
         {this.props.children}
