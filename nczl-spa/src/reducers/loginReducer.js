@@ -1,5 +1,4 @@
-import {LOG_IN, LOG_OUT,CHANGE_PASSWORD,login,logout,change_password} from '../actions'
-import $ from 'jquery'
+import {LOG_IN, LOG_OUT} from '../actions'
 
 const initialState = {
   isLogin: false
@@ -18,11 +17,6 @@ const loginReducer = (state = initialState, action) => {
         ...state,
         isLogin: false,
         name: null
-      }
-    case CHANGE_PASSWORD:
-      return {
-        ...state,
-        password:action.payload
       }
     default:
       return state

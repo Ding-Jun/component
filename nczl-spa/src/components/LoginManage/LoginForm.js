@@ -3,6 +3,7 @@
  */
 import React from 'react'
 import Input from '../common/Input'
+import {getDefaultOption} from '../common/Modal'
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -15,9 +16,23 @@ class LoginForm extends React.Component {
 
   handleLogin(e) {
     e.preventDefault();
-
-    this.props.actions.login(this.state.userName,this.state.password);
-    this.props.actions.sendRedirect('/');
+    const {loginReq,openModal,closeModal} =this.props.actions;
+  var modalOption=getDefaultOption();
+    var {userName,password}=this.state;
+    if(!userName){
+      modalOption.content='账号不能为空';
+      modalOption.onOk=closeModal;
+      openModal(modalOption);
+      return
+    }
+    if(!password){
+      modalOption.content='密码不能为空';
+      modalOption.onOk=closeModal;
+      openModal(modalOption);
+      return
+    }
+    loginReq(userName,password);
+    //this.props.actions.sendRedirect('/');
   }
 
   handleFieldChange(e) {

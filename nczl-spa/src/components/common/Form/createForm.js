@@ -5,7 +5,6 @@ import React from 'react';
 import Validator from '../Validator'
 import {uuid} from '../util'
 
-//2016年10月24日14:29:28  暂停
 /**
  * React High Order Component   For Form
  * @param options  暂时没用
@@ -64,7 +63,7 @@ function createForm(options) {
       }
 
       /**
-       * 提交前的验证    未完成
+       * 提交前的验证
        * @param callBack    callBack(errors,values)
        */
       validateFields(callBack) {

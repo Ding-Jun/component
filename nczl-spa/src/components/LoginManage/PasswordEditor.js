@@ -13,42 +13,19 @@ class PasswordEditor extends React.Component {
   constructor(props) {
     super(props);
     // Operations usually carried out in componentWillMount go here
-    this.state={
-      modalVisible:false
-    }
-  }
-  openModal(){
-    this.setState({modalVisible:true})
-  }
-  closeModal(){
-    this.setState({modalVisible:false})
   }
   handleSubmit(e) {
     e.preventDefault();
-    const {validateFields}=this.props.form;
-    validateFields((errors,values)=>{
+    const {actions,form}=this.props;
+    form.validateFields((errors,values)=>{
       console.log("haha handleSubmit",errors," - ",values);
       if(!errors){
        // this.openModal();
-        //this.props.actions.changePassword(this.props.form.getFieldValue('newPassword'));
+        actions.changePasswordReq(values.password,values.newPassword);
       }
     })
-    //console.log("haha", this.refs.form);
-    //console.log("|inpout ", Input.defaultProps)
-    //var elem=this.refs.form.props.children[1].props.children;
-    //var elem2=this.refs.form.props.children[0];
-    //console.log("form",elem instanceof Input)
-    //console.log("form2",elem2 instanceof Input)
-
-    //this.openModal();
-    //this.props.actions.changePassword(this.props.form.getFieldValue('newPassword'));
   }
 
-  handleOk(e){
-    e.preventDefault();
-    this.closeModal();
-    this.props.actions.logout();
-  }
   handleReturn(e){
     e.preventDefault();
     this.props.actions.goBack();
@@ -104,9 +81,6 @@ class PasswordEditor extends React.Component {
             <Button prefixCls="btn_4" onClick={this.handleReturn.bind(this)}>返回</Button>
           </FormItem>
         </Form>
-        <Modal title="信息" visible={this.state.modalVisible} closable={false}
-               onOk={this.handleOk.bind(this)}
-        >密码修改成功，请重新登录</Modal>
       </Card>
     )
   }

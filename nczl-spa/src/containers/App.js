@@ -5,7 +5,7 @@ import React,{PropTypes} from 'react'
 import { connect } from 'react-redux'
 import { push as sendRedirect } from 'react-router-redux'
 import { bindActionCreators } from 'redux';
-import { login_query,logout } from '../actions';
+import { loginReq,logoutReq,changePasswordReq,checkLoginReq,openModal,closeModal } from '../actions';
 import Main from '../components/Main'
 
 class App extends React.Component{
@@ -13,28 +13,24 @@ class App extends React.Component{
       super(props);
       // Operations usually carried out in componentWillMount go here
     }
-  componentWillMount(){
-    console.log(this.props.actions.login_query);
-    console.log("app componentWillMount")
-  }
     render(){
-        const {profile,actions}=this.props;
-        console.log("app render")
+        const {profile,actions,globalModalOption}=this.props;
+        //console.log("App render",this.props)
         return (
-         <Main profile={profile} actions={actions}>{this.props.children}</Main>
+         <Main profile={profile} globalModalOption={globalModalOption} actions={actions}>{this.props.children}</Main>
         )
     }
 }
 
 function mapStateToProps(state) {
   /* Populated by react-webpack-redux:reducer */
-  const {profile}=state;
-  return {profile};
+  const {profile,globalModalOption}=state;
+  return {profile,globalModalOption};
 }
 
 function mapDispatchToProps(dispatch) {
   /* Populated by react-webpack-redux:action */
-  const actions = { login_query ,logout,sendRedirect};
+  const actions = { loginReq,logoutReq,changePasswordReq,checkLoginReq,openModal,closeModal};
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
 }

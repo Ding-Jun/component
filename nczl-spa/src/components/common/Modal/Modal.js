@@ -36,7 +36,8 @@ class Modal extends React.Component {
       'onOk',
       'closable',
       'className',
-      'prefixCls'
+      'prefixCls',
+      'content'
     ]);
     const classes=classnames({
       [`${prefixCls}-main`]:true,
@@ -60,6 +61,7 @@ class Modal extends React.Component {
             </span>:null}
           </div>
           <div className={`${prefixCls}-content`}>
+            {this.props.content}
             {this.props.children}
           </div>
           <div className={`${prefixCls}-footer`}>{footer || defaultFooter}</div>

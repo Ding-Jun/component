@@ -23,7 +23,7 @@ class UserInfo extends React.Component{
   }
   handleLogout(e){
     e.preventDefault();
-    this.props.actions.logout();
+    this.props.actions.logoutReq();
   }
     render(){
         const {isLogin,name}=this.props.profile;

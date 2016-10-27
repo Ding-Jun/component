@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { goBack } from 'react-router-redux';
-import {logout,changePassword} from '../actions'
+import {changePasswordReq,openModal,closeModal} from '../actions'
 import {PasswordEditor} from '../components/LoginManage'
 
 class PasswordEditorContainer extends React.Component{
@@ -22,7 +22,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   /* Populated by react-webpack-redux:action */
-  const actions = { changePassword ,logout,goBack};
+  const actions = { changePasswordReq ,goBack,openModal,closeModal};
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
 }
