@@ -68,30 +68,31 @@
     	<img src="images/pic2.jpg" class="newspic"><h2>超越传统互联 健康中国步入大数据时代</h2><h5><span><img src="images/icon_like.png" width="22"> 23433</span> 沈某某  在线护理宣教演示参与医院护士长</h5>
     </div>
     </a>
-	<script type="text/javascript">
-		TouchSlide({
-			slideCell:"#slideBox",
-			titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
-			mainCell:".bd ul",
-			effect:"leftLoop",
-			autoPage:true,//自动分页
-			autoPlay:true //自动播放
-		});
-
-		$(".navsearch").click(function(){
-			$(".search").show();
-		})
-
-		$(".searchcancel").click(function(){
-			$(".search").hide();
-		})
-
-		$(".tab a").click(function(){
-			$(this).addClass("cur").siblings().removeClass("cur")
-
-		})
-	</script>
+    <div class="article-loading"></div>
 </div>
+<script type="text/javascript">
+  TouchSlide({
+    slideCell:"#slideBox",
+    titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+    mainCell:".bd ul",
+    effect:"leftLoop",
+    autoPage:true,//自动分页
+    autoPlay:true //自动播放
+  });
+
+  $(".navsearch").click(function(){
+    $(".search").show();
+  })
+
+  $(".searchcancel").click(function(){
+    $(".search").hide();
+  })
+
+  $(".tab a").click(function(){
+    $(this).addClass("cur").siblings().removeClass("cur")
+
+  })
+</script>
 <script type="text/javascript" src="assets/app.js"></script>
 </body>
 </html>
