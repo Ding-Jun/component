@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>正阅</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
 	<script type="text/javascript" src="plugin/jquery.min.js"></script>
     <script type="text/javascript">
         var phoneScale = parseInt(window.screen.width) / 640;
@@ -17,7 +17,7 @@
    	  <a href="#" class="navsearch"><img src="images/icon_search1.png" width="40"></a><a href="user.html" class="navback"></a><img src="images/logo.png" class="logo">
    	  <div class="search"><a href="#" class="searchcancel">取消</a><div class="searchmain"><input class="si" type="search" placeholder="请输入关键字进行查询"></div></div>
     </div>
-  <script src="js/TouchSlide.1.1.js"></script>
+  <script src="plugin/TouchSlide.1.1.js"></script>
   <div id="slideBox" class="slideBox">
 		<div class="bd">
             <ul>
@@ -69,29 +69,29 @@
     </div>
     </a>
 	<script type="text/javascript">
-		TouchSlide({ 
+		TouchSlide({
 			slideCell:"#slideBox",
 			titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
-			mainCell:".bd ul", 
-			effect:"leftLoop", 
+			mainCell:".bd ul",
+			effect:"leftLoop",
 			autoPage:true,//自动分页
 			autoPlay:true //自动播放
 		});
-		
+
 		$(".navsearch").click(function(){
 			$(".search").show();
 		})
-		
+
 		$(".searchcancel").click(function(){
 			$(".search").hide();
 		})
-		
+
 		$(".tab a").click(function(){
 			$(this).addClass("cur").siblings().removeClass("cur")
-			
+
 		})
 	</script>
 </div>
-<script type="text/javascript" src="assets/index.js"></script>
+<script type="text/javascript" src="assets/app.js"></script>
 </body>
 </html>
