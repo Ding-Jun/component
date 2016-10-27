@@ -333,7 +333,7 @@ class ArticleDetail extends React.Component {
 
         </FromItem>
         <FromItem>
-          <Button prefixCls="btn_4" onClick={this.handleSubmit.bind(this)} style={{margin: "3px"}}>编辑信息</Button>
+          <Button prefixCls="btn_4" onClick={this.handleSubmit.bind(this)} style={{margin: "3px"}}>{readOnly?'编辑信息':'保存'}</Button>
           <Button prefixCls="btn_4" onClick={this.handleReturn.bind(this)} style={{margin: "3px"}}>返回</Button>
         </FromItem>
       </Form>

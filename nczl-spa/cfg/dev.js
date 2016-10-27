@@ -4,7 +4,7 @@ let path = require('path');
 let webpack = require('webpack');
 let baseConfig = require('./base');
 let defaultSettings = require('./defaults');
-
+defaultSettings.publicPath=`/${defaultSettings.publicPath}`;//改绝对路径
 // Add needed plugins here
 let BowerWebpackPlugin = require('bower-webpack-plugin');
 
