@@ -1,32 +1,65 @@
-'use strict';
+const path    = require('path');
+const env     = require('yargs').argv.mode;
+const webpack = require('webpack');
 
-const path = require('path');
-const args = require('minimist')(process.argv.slice(2));
+const projectRoot = path.resolve(__dirname, '/');
 
-// List of allowed environments
-const allowedEnvs = ['dev', 'dist', 'test'];
+const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 
-// Set the correct environment
-let env;
-if (args._.length > 0 && args._.indexOf('start') !== -1) {
-  env = 'test';
-} else if (args.env) {
-  env = args.env;
+const libraryName = 'nczl-mobile';
+
+const plugins = [];
+let outputFile;
+const srcPath = path.join(__dirname, '/../src');
+if (env === 'build') {
+  plugins.push(new UglifyJsPlugin({ minimize: true }));
+  outputFile = `asserts/[name].min.js`;
 } else {
-  env = 'dev';
-}
-process.env.REACT_WEBPACK_ENV = env;
-
-/**
- * Build the webpack configuration
- * @param  {String} wantedEnv The wanted environment
- * @return {Object} Webpack config
- */
-function buildConfig(wantedEnv) {
-  let isValid = wantedEnv && wantedEnv.length > 0 && allowedEnvs.indexOf(wantedEnv) !== -1;
-  let validEnv = isValid ? wantedEnv : 'dev';
-  let config = require(path.join(__dirname, 'cfg/' + validEnv));
-  return config;
+  outputFile = `asserts/[name].js`;
 }
 
-module.exports = buildConfig(env);
+const config = {
+  entry:{
+    index:'./src/js/home/index.js',
+    search:'./src/js/search/index.js',
+    article:'./src/js/article/index.js'
+  },
+  devtool: 'source-map',
+  output: {
+    path: `${__dirname}/dist`,
+    srcPath:srcPath,
+    publicPath: '/assets/',
+    filename: outputFile,
+    library: libraryName,
+    libraryTarget: 'umd',
+    umdNamedDefine: true
+  },
+  module: {
+    preLoaders: [
+      {
+        test: /(\.jsx|\.js)$/,
+        loader: 'eslint',
+        include: projectRoot,
+        exclude: /(node_modules|bower_components)/
+      }
+    ],
+    loaders: [
+      {
+        test: /(\.jsx|\.js)$/,
+        loader: 'babel',
+        include: projectRoot,
+        exclude: /(node_modules|bower_components)/
+      }
+    ]
+  },
+  resolve: {
+    root: path.resolve('./src'),
+    extensions: ['', '.js']
+  },
+  externals: {
+    jquery: 'window.$'
+  },
+  plugins
+};
+
+module.exports = config;

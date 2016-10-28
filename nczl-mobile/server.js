@@ -1,17 +1,26 @@
-/*eslint no-console:0 */
-'use strict';
-require('core-js/fn/object/assign');
-const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
-const config = require('./webpack.config');
+/**
+ * Created by admin on 2016/10/28.
+ */
+var webpack = require('webpack');
+var WebpackDevServer = require('webpack-dev-server');
+var config = require('./webpack.config');
 const open = require('open');
-
-new WebpackDevServer(webpack(config), config.devServer)
-.listen(config.port, 'localhost', (err) => {
+console.log("pppp"+ config.output.publicPath);
+new WebpackDevServer(webpack(config), {
+  publicPath: config.output.publicPath,
+  hot: true,
+  proxy: {
+    '/nczl-web/*': {
+      target: 'http://192.168.51.177:8090',
+      secure: false
+    }
+  },
+  contentBase: "./dist",
+  noInfo: false,
+  historyApiFallback: true
+}).listen(3000, '127.0.0.1', function (err, result) {
   if (err) {
     console.log(err);
   }
-  console.log('Listening at localhost:' + config.port);
-  console.log('Opening your system browser...');
-  open('http://localhost:' + config.port + '/webpack-dev-server/');
+  open('http://localhost:' + 3000);
 });

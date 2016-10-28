@@ -1,11 +1,8 @@
 {
-  "presets": [
-    "es2015",
-    "stage-0",
-    "react"
-  ],
+  "presets": ["es2015"],
   "plugins": [
-    ["transform-imports", {
+  "babel-plugin-add-module-exports",
+	["transform-imports", {
       "react-router": {
         "transform": "react-router/lib/${member}",
         "preventFullImport": true
