@@ -6,8 +6,7 @@ import {root} from './common/constants'
 $(function(){
   //showArticleList(1,{columnId:5});
   console.log('String fiy',urlEncode({}));
-  doShowArticleList([1,2,23,3]);
-  doShowArticleList([1,2,23,3]);
+  showArticleList(1);
 })
 
 //===============Show Articles=======================
@@ -21,7 +20,7 @@ function showArticleList(targetPage,query) {
     dataType: 'json',
     success: function (rm) {
       if (rm.code == 1) {
-        doshowArticleList(rm.result);
+        doShowArticleList(rm.result.rowData);
       }
     }
   })
@@ -31,11 +30,11 @@ function showArticleList(targetPage,query) {
 function doShowArticleList(articles) {
   var articleList = map(articles,(article)=>(
     [
-      `<a href="article.html">`,
+      `<a href="article.html?id=${article.id}">`,
       `<div class="news">`,
-      `<img src="images/pic2.jpg" class="newspic">`,
-        `<h2>超越传统互联 健康中国步入大数据时代</h2>`,
-        `<h5><span><img src="images/icon_like.png" width="22"> 23433</span> 沈某某  在线护理宣教演示参与医院护士长</h5>`,
+      `<img src="${article.titleImg}" class="newspic">`,
+        `<h2>${article.title}</h2>`,
+        `<h5><span><img src="images/icon_like.png" width="22"> ${article.likes}</span> ${article.author}  </h5>`,
       `</div></a>`
     ].join('')
   ))
