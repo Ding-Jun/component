@@ -12,8 +12,8 @@
 </head>
 <body bgcolor="#efefef">
 <div class="content">
-  <div id="wrapper-none">
-    <div id="scroller-none">
+  <div id="wrapper">
+    <div id="scroller">
       <div class="nav">
         <a href="#" class="navsearch"><img src="images/icon_search1.png" width="40"></a><a href="user.html"
                                                                                            class="navback"></a><img
@@ -52,9 +52,12 @@
       </div>
 
       <div class="article-loading"></div>
+
+    </div>
     </div>
   </div>
 </div>
+
 <script src="plugin/TouchSlide.1.1.js"></script>
 <script src="plugin/iscroll.js"></script>
 <script type="text/javascript">
@@ -66,7 +69,7 @@
     autoPage: true,//自动分页
     autoPlay: true //自动播放
   });
-
+/*
   $(".navsearch").click(function () {
     $(".search").show();
   })
@@ -78,9 +81,21 @@
   $(".tab a").click(function () {
     $(this).addClass("cur").siblings().removeClass("cur")
 
+  })*/
+  $(".navsearch").on('tap',function () {
+    $(".search").show();
+  })
+  $(".searchcancel").on('tap',function () {
+    $(".search").hide();
+  })
+
+  $(".tab a").on('tap',function () {
+    $(this).addClass("cur").siblings().removeClass("cur")
   })
 </script>
+
+<script type="text/javascript" src="plugin/iscroll.js"></script>
 <script src="http://localhost:8000/webpack-dev-server.js"></script>
-<script type="text/javascript" src="http://localhost:3000/assets/asserts/index.js"></script>
+<script type="text/javascript" src="/assets/home.js"></script>
 </body>
 </html>

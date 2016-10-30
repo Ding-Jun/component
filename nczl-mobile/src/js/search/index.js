@@ -1,6 +1,7 @@
 /**
  * Created by admin on 2016/10/28.
  */
+ import $ from 'jquery'
 import {showArticleList} from '../article/article'
 import getParamValueFromParentPage from '../common/getParamValueFromParentPage'
 $(function () {

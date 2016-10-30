@@ -1,49 +1,35 @@
-const path       = require('path');
-const merge      = require('webpack-merge');
+var webpackCfg = require('./webpack.config');
 
-const baseConfig = require('./webpack.config');
-
-const webpackConfig = merge(baseConfig, {
-  devtool: '#inline-source-map'
-});
-
-delete webpackConfig.entry;
-
-webpackConfig.module.preLoaders = webpackConfig.module.preLoaders || [];
-
-webpackConfig.module.preLoaders.unshift({
-  test   : /\.js$/,
-  loader : 'isparta',
-  include: path.resolve('src/')
-});
-
-webpackConfig.module.loaders.some((loader, i) => {
-  if (loader.loader === 'babel') {
-    loader.include = path.resolve('test/');
-    return true;
-  }
-
-  return false;
-});
+// Set node environment to testing
+process.env.NODE_ENV = 'test';
 
 module.exports = function(config) {
   config.set({
-    browsers: ['PhantomJS'],
-    frameworks: ['mocha'],
-    reporters: ['spec', 'coverage'],
-    files: ['test/index.js'],
-    preprocessors: {
-      'test/index.js': ['webpack', 'sourcemap']
+    basePath: '',
+    browsers: [ 'PhantomJS' ],
+    files: [
+      'test/loadtests.js'
+    ],
+    port: 8000,
+    captureTimeout: 60000,
+    frameworks: [ 'mocha', 'chai' ],
+    client: {
+      mocha: {}
     },
-    webpack: webpackConfig,
-    webpackMiddleware: { noInfo: true },
-    colors: true,
-    logLevel: config.LOG_DISABLE,
+    singleRun: true,
+    reporters: [ 'mocha', 'coverage' ],
+    preprocessors: {
+      'test/loadtests.js': [ 'webpack', 'sourcemap' ]
+    },
+    webpack: webpackCfg,
+    webpackServer: {
+      noInfo: true
+    },
     coverageReporter: {
-      dir      : './coverage',
+      dir: 'coverage/',
       reporters: [
-        { type: 'lcov', subdir: '.' },
-        { type: 'text-summary' }
+        { type: 'html' },
+        { type: 'text' }
       ]
     }
   });

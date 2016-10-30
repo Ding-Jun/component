@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import {showArticle} from './article'
 import {addComment, showCommentList, addLikes,doShowCommentList} from './comment'
 import getParamValueFromParentPage from '../common/getParamValueFromParentPage'
