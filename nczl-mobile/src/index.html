@@ -15,10 +15,8 @@
   <div id="wrapper">
     <div id="scroller">
       <div id="pullDown">
+        <div class="pullDownLabel"></div>
       </div>
-      <ul id="thelist" class="commontul">
-      </ul>
-
       <div class="nav">
         <a href="#" class="navsearch"><img src="images/icon_search1.png" width="40"></a><a href="user.html"
                                                                                            class="navback"></a><img
@@ -55,10 +53,11 @@
       <div class="tab">
         <a href="javascript:;" class="cur">最新</a><a href="javascript:;">最热</a><a href="javascript:;">独家</a>
       </div>
-
-      <div class="article-loading"></div>
+      <div id="thelist" class="commontul">
+        <div class="article-loading"></div>
+      </div>
       <div id="pullUp">
-        <span class="pullUpIcon" id="pull_up_icon"></span><span class="pullUpLabel">上拉加载更多...</span>
+        <div class="pullUpLabel"></div>
       </div>
     </div>
     </div>
@@ -79,7 +78,6 @@
   </table>
 </form>
 <script src="plugin/TouchSlide.1.1.js"></script>
-<script src="plugin/iscroll.js"></script>
 <script type="text/javascript">
   TouchSlide({
     slideCell: "#slideBox",
@@ -114,8 +112,8 @@
   })
 </script>
 
-<script type="text/javascript" src="plugin/iscroll.js"></script>
+<script type="text/javascript" src="plugin/iscroll-probe.js"></script>
 <script src="http://localhost:8000/webpack-dev-server.js"></script>
-<script type="text/javascript" src="/assets/home.js"></script>
+<script type="text/javascript" src="assets/home.js"></script>
 </body>
 </html>

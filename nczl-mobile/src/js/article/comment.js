@@ -1,7 +1,7 @@
 /**
  * Created by admin on 2016/10/28.
  */
-import {map} from 'lodash'
+import {map,isFunction} from 'lodash'
 import {root} from '../common/constants'
 import urlEncode from '../common/urlEncode'
 /**
@@ -9,17 +9,19 @@ import urlEncode from '../common/urlEncode'
  * @param targetPage
  * @param query
  */
-export const showCommentList= (id,targetPage, query) => {
+const noop=()=>{};
+export const showCommentList= (id,targetPage, query,callback) => {
   if(!isNaN(id)){
     $.ajax({
       type: 'GET',
-      url: `/nczl-web/rs/comment/list?curpage=${targetPage}&pageSize=10&objectId=${id}`,
+      url: `/nczl-web/rs/comment/list?curPage=${targetPage}&pageSize=10&objectId=${id}`,
       dataType: 'json',
       success: function (rm) {
         console.log('showCommentList rm',rm);
         if (rm.code == 1) {
           doShowCommentList(rm.result.rowData);
           $('#commentCount').text(`(${rm.result.totalRows})`)
+          isFunction(callback)? callback(rm.result):noop();
         }
       }
     })
@@ -38,7 +40,7 @@ export const doShowCommentList = (comments)=> {
     `<li>${comment.content}<div class="cltop"><span>${(new Date(comment.createtime)).Format("yyyy-MM-dd hh:mm:ss")}</span></div></li>`
   ))
   console.log('doshowCommentList comments',comments,commentList);
-  $('.comment-loading').before(commentList.join(''));
+  $('#thelist').append(commentList.join(''));
 }
 
 

@@ -12,8 +12,11 @@
 </head>
 <body bgcolor="#efefef">
 <div class="content">
-  <div id="wrapper-none">
-    <div id="scroller-none">
+  <div id="wrapper">
+    <div id="scroller">
+      <div id="pullDown">
+        <div class="pullDownLabel"></div>
+      </div>
       <div class="nav">
         <a href="#" class="navsearch"><img src="images/icon_search1.png" width="40"></a><a href="user.html"
                                                                                            class="navback"></a><img
@@ -26,7 +29,7 @@
       </div>
 
       <div id="slideBox" class="slideBox">
-        <div class="bd">
+        <div class="bd slideBox-bd">
           <ul>
             <li>
               <a class="pic" href="#"><img src="images/1b.jpg"/></a>
@@ -50,13 +53,31 @@
       <div class="tab">
         <a href="javascript:;" class="cur">最新</a><a href="javascript:;">最热</a><a href="javascript:;">独家</a>
       </div>
-
-      <div class="article-loading"></div>
+      <div id="thelist" class="commontul">
+        <div class="article-loading"></div>
+      </div>
+      <div id="pullUp">
+        <div class="pullUpLabel"></div>
+      </div>
+    </div>
     </div>
   </div>
 </div>
+<form id="prodInfoCommentsForm" method="get" style="display:none;">
+  <table>
+    <tr>
+      <td><input type="hidden" name="user_id" value="1" id="userId"/>
+        <input type="hidden" name="product_id" value="328" id="productId"/>
+        <input type="hidden" name="newest_id" value="" />
+        <input type="hidden" name="oldest_id" value="" id="oldestId" />
+        <input type="hidden" name="page_size" value="15" />
+        <input type="hidden" name="callback" value="prodInfoComments" />
+        <input type="hidden" name="city_code" value="0575" id="colCityCode"/></td>
+    </tr>
+    <tr><td colspan="2"><input id="prodInfoCommentsBtn" type="button" onclick="ajaxJsonp()" value="提交"></td></tr>
+  </table>
+</form>
 <script src="plugin/TouchSlide.1.1.js"></script>
-<script src="plugin/iscroll.js"></script>
 <script type="text/javascript">
   TouchSlide({
     slideCell: "#slideBox",
@@ -66,7 +87,7 @@
     autoPage: true,//自动分页
     autoPlay: true //自动播放
   });
-
+/*
   $(".navsearch").click(function () {
     $(".search").show();
   })
@@ -78,9 +99,21 @@
   $(".tab a").click(function () {
     $(this).addClass("cur").siblings().removeClass("cur")
 
+  })*/
+  $(".navsearch").on('tap',function () {
+    $(".search").show();
+  })
+  $(".searchcancel").on('tap',function () {
+    $(".search").hide();
+  })
+
+  $(".tab a").on('tap',function () {
+    $(this).addClass("cur").siblings().removeClass("cur")
   })
 </script>
-<script src="http://localhost:8000/webpack-dev-server.js"></script>
-<script type="text/javascript" src="http://localhost:3000/assets/asserts/index.js"></script>
+
+<script type="text/javascript" src="plugin/iscroll-probe.js"></script>
+<script src="webpack-dev-server.js"></script>
+<script type="text/javascript" src="assets/home.js"></script>
 </body>
 </html>
