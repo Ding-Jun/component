@@ -18,12 +18,14 @@ let config = Object.assign({}, baseConfig, {
   },
   output: {
     path: path.join(__dirname, '/../dist/assets'),
+    //filename: '[name].[chunkhash:6].js',        //真正生產使用
     filename: '[name].js',
     publicPath: publicPath
   },
   cache: false,
   devtool: 'sourcemap',
   plugins: [
+    //new webpack.optimize.CommonsChunkPlugin('common.[chunkhash:6].js'),   //真正生產使用
     new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'
