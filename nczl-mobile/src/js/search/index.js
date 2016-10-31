@@ -28,8 +28,8 @@ var spinner;
 var curPage = 1;
 function positionJudge() {
   if (this.y > 40) {    //判断下拉
-    pullDown.innerHTML = "放开刷新页面";
-    console.log('放开刷新页面');
+    /*pullDown.innerHTML = "放开刷新页面";
+    console.log('放开刷新页面');*/
     pullDownFlag = 1;
   } else if (this.y < (this.maxScrollY - 40)) {   //判断上拉
     pullUp.innerHTML = "放开刷新页面";
@@ -39,13 +39,13 @@ function positionJudge() {
 }
 function action() {
   if (pullDownFlag == 1) {
-    pullDownAction();
+   /* pullDownAction();
     pullDown.innerHTML = "下拉刷新…";
-    console.log('下拉刷新');
+    console.log('下拉刷新');*/
     pullDownFlag = 0;
   } else if (pullUpFlag == 1) {
     pullUpAction();
-    pullUp.innerHTML = "上拉刷新…";
+    pullUp.innerHTML = `<img src="../../images/loading.gif"/>`;
     console.log('上拉刷新');
     pullUpFlag = 0;
   }
@@ -60,7 +60,7 @@ function loaded() {
 //        momentum: false,//关闭惯性滑动
     mouseWheel: true,//鼠标滑轮开启
     //scrollbars: true,//滚动条可见
-    fadeScrollbars: true,//滚动条渐隐
+    fadeScrollbars: true,//滚动条渐隐ddd
     interactiveScrollbars: true,//滚动条可拖动
     shrinkScrollbars: 'scale', // 当滚动边界之外的滚动条是由少量的收缩
     useTransform: true,//CSS转化

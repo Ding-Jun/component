@@ -16,21 +16,30 @@
   <div class="nav">
     <a href="#" class="navsearch"></a><!--<a href="#" class="navback">--></a><img src="images/logo.png" class="logo">
   </div>
-  <div class="article">
+  <div id="wrapper">
+    <div id="scroller">
+      <div id="pullDown">
+        <div class="pullDownLabel"></div>
+      </div>
+      <div class="article">
 
-  </div>
-  <div class="commont">
-    <div class="title">评论<span id="commentCount">()</span></div>
-    <ul id="thelist" class="commontul">
-      <li class="comment-loading">
-        <div></div>
-      </li>
-    </ul>
+      </div>
+      <div class="commont">
+        <div class="title">评论<span id="commentCount">()</span></div>
+        <ul id="thelist" class="commontul">
+
+        </ul>
+        <div id="pullUp">
+          <div class="pullUpLabel"></div>
+        </div>
+      </div>
+
+      <div style="height: 80px"></div>
+    </div>
   </div>
   <div class="foot"><a href="javascript:;" class="talk"><img src="images/icon_talk.png"> 我要评论</a><a
     href="javascript:history.go(-1);" class="footback"><img src="images/icon_back1.png"></a></div>
 </div>
-
 <div class="layer">
   <div class="layermain">
 
@@ -40,6 +49,7 @@
       <a href="javascript:;" onClick="$('.layer').hide()" class="btn_cancel">取消</a><a onClick="$('.layer').hide()"
                                                                                       class="btn_pay">保存修改</a>
     </div>
+
   </div>
 </div>
 
@@ -48,6 +58,7 @@
     $(".layer").show();
   })
 </script>
+<script type="text/javascript" src="plugin/iscroll-probe.js"></script>
 <script type="text/javascript" src="assets/article.js"></script>
 </body>
 </html>

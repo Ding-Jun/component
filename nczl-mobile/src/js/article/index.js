@@ -33,7 +33,9 @@ $(function () {
         }
         console.log("comment",comment)
         doShowCommentList([comment]);
+        setTimeout(function () { myScroll.refresh(); }, 0);
         $('.layer').hide()
+        myScroll.scrollToElement(document.querySelector('#scroller li:last-child'), null, null, true)
       });
     });
 
@@ -70,7 +72,7 @@ function action() {
     pullDownFlag = 0;
   } else if (pullUpFlag == 1) {
     pullUpAction();
-    pullUp.innerHTML = "上拉刷新…";
+    pullUp.innerHTML = `<img src="../../images/loading.gif"/>`;
     console.log('上拉刷新');
     pullUpFlag = 0;
   }

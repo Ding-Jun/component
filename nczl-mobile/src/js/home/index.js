@@ -43,12 +43,12 @@ function positionJudge(){
 function action(){
   if(pullDownFlag==1){
     pullDownAction();
-    pullDown.innerHTML = "下拉刷新…";
+    pullDown.innerHTML = `<img src="../../images/loading.gif"/>`;
     console.log('下拉刷新');
     pullDownFlag = 0;
   }else if(pullUpFlag==1){
     pullUpAction();
-    pullUp.innerHTML = "上拉刷新…";
+    pullUp.innerHTML = `<img src="../../images/loading.gif"/>`;
     console.log('上拉刷新');
     pullUpFlag = 0;
   }
