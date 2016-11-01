@@ -12,20 +12,20 @@ let BowerWebpackPlugin = require('bower-webpack-plugin');
 
 let config = Object.assign({}, baseConfig, {
   entry: {
-    home:'./src/js/home/index',
-    article:'./src/js/article/index',
-    search:'./src/js/search/index'
+    home:'./src/home/index',
+    article:'./src/article/index',
+    search:'./src/search/index'
   },
   output: {
     path: path.join(__dirname, '/../dist/assets'),
-    //filename: '[name].[chunkhash:6].js',        //真正生產使用
-    filename: '[name].js',
+    filename: '[name].[chunkhash:6].js',        //真正生產使用
+    //filename: '[name].js',
     publicPath: publicPath
   },
   cache: false,
   devtool: 'sourcemap',
   plugins: [
-    //new webpack.optimize.CommonsChunkPlugin('common.[chunkhash:6].js'),   //真正生產使用
+    new webpack.optimize.CommonsChunkPlugin('common.[chunkhash:6].js'),   //真正生產使用
     new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'

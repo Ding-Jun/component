@@ -1,7 +1,6 @@
 /**
  * Created by admin on 2016/10/14.
  */
-import './style'
 import React from 'react'
 class Pagination extends React.Component {
   constructor(props) {

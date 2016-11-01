@@ -11,7 +11,7 @@ import '../common/date'
 const noop=()=>{};
 export const showArticleList = (targetPage, query,callback) => {
   var queryString = urlEncode(query);
-  var url = `${root}/rs/article/list?curPage=${targetPage}&pageSize=10${queryString}`;
+  var url = `${root}/rs/article/list?curPage=${targetPage}&pageSize=10&status=1${queryString}`;
   $.ajax({
     type: 'GET',
     url: url,
@@ -32,7 +32,7 @@ export const showArticleList = (targetPage, query,callback) => {
 
 export const refreshArticleList=(targetPage, query,callback)=>{
   var queryString = urlEncode(query);
-  var url = `${root}/rs/article/list?curPage=${targetPage}&pageSize=10${queryString}`;
+  var url = `${root}/rs/article/list?curPage=${targetPage}&pageSize=10&status=1${queryString}`;
   $.ajax({
     type: 'GET',
     url: url,
@@ -109,7 +109,7 @@ export const doShowArticle = (article)=> {
     `</div>`
   ].join('');
   $('.article').append(articleDetail);
-  console.log(articleDetail);
+  //console.log(articleDetail);
 }
 
 
@@ -133,7 +133,7 @@ export const showTopArticleList = (callback) => {
 export const doShowTopArticleList = (articles)=> {
   var articleList = getTopArticleStr(articles);
 
-  console.log("doshowTopArticleList articleList",articleList);
+  //console.log("doshowTopArticleList articleList",articleList);
   $('#slideBox > .hd').html('<ul></ul>');
   $('#slideBox > .bd').html(articleList);
   TouchSlide({

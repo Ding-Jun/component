@@ -3,7 +3,6 @@
  */
 import React from 'react'
 import classnames from 'classnames'
-import './style'
 class NavItem extends React.Component {
   constructor(props) {
     super(props);

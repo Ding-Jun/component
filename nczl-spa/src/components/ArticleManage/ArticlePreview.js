@@ -84,6 +84,29 @@ class ArticlePreview extends React.Component {
     this.setState({query:query,loading: true});
     this.queryArticleList(1,query);
   }
+  handleDeleteArticle(e){
+    e.preventDefault();
+    var query=this.state.query;
+    var targetId = e.currentTarget.getAttribute("data-id");
+    console.log('targetId',targetId);
+    var r = confirm("确认删除?");
+    if (r == true) {
+      var url = `/nczl-web/rs/article/delete`;
+      $.ajax({
+        type: 'POST',
+        url: url,
+        data: {
+          id: targetId
+        },
+        dataType: 'json',
+        success: function (rm) {
+          if (rm.code == 1) {
+            this.queryArticleList(this.state.page.curPage,query);
+          }
+        }.bind(this)
+      })
+    }
+  }
 
   render() {
     const columns = [{title: '标题', dataIndex: 'title', width: "39%", key: 'title'},
@@ -114,12 +137,12 @@ class ArticlePreview extends React.Component {
         sort: article.sort,
         isStick: article.stick==1?'是':null,
         status: status,
-        comments: article.comments,
+        comments: article.comments?<Link to={`/article/${article.id}/1`}>{article.comments}</Link>:article.comments,
         operation: (
           <span>
             <Link to={`/article/detail/readOnly/${article.id}`}>详细</Link>
             <Link to={`/article/detail/edit/${article.id}`}>编辑</Link>
-            <a href="#">删除</a>
+            <a href="#" data-id={article.id} onClick={this.handleDeleteArticle.bind(this)}>删除</a>
           </span>
         )
       }

@@ -3,7 +3,7 @@
  */
 import App from './containers/App';
 import ColumnManage, {ColumnPreview, ColumnDetail} from './components/ColumnManage'
-import ArticleManage, {ArticlePreview, ArticleDetail} from './components/ArticleManage'
+import ArticleManage, {ArticlePreview, ArticleDetail,ArticleCommentList} from './components/ArticleManage'
 import BuyListManage, {BuyListPreview, BuyListDetail} from './components/BuyListManage'
 import ArticleReview, {ArticleReviewPreview, ArticleReviewDetail} from './components/ArticleReview'
 import CommentReview, {CommentPreview} from './components/CommentReview'
@@ -36,7 +36,9 @@ const routes = [
         component: ArticleManage,
         childRoutes: [
           {path: '/article/preview/:columnId/:targetPage', component: ArticlePreview},
-          {path: '/article/detail/:type/:id', component: ArticleDetailContainer}
+          {path: '/article/detail/:type/:id', component: ArticleDetailContainer},
+          {path: '/article/:articleId/:targetPage', component: ArticleCommentList}
+
         ]
       },
       {

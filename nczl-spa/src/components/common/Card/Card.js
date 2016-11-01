@@ -2,7 +2,6 @@
  * Created by admin on 2016/10/13.
  */
 import React from 'react'
-import './style'
 class Card extends React.Component{
     constructor(props){
       super(props);

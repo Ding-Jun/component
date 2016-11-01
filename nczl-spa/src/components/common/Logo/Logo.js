@@ -1,7 +1,6 @@
 /**
  * Created by admin on 2016/10/13.
  */
-import './style'
 import React from 'react'
 class Logo extends React.Component{
     constructor(props){

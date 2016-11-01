@@ -4,7 +4,6 @@
 import React from 'react'
 import classnames from 'classnames'
 import {omit} from 'lodash'
-import './style'
 import FormItem from './FormItem'
 import createForm from './createForm'
 class Form extends React.Component{

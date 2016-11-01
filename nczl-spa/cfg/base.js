@@ -38,6 +38,9 @@ module.exports = {
       }
     }
   },
+  externals: {
+    jquery: 'window.$'
+  },
   resolve: {
     extensions: ['', '.js', '.jsx'],
     alias: {

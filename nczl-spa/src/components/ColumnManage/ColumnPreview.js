@@ -67,9 +67,28 @@ class ColumnPreview extends React.Component {
     const  elem=e.currentTarget;
     this.openModal(elem.getAttribute("data-type"),elem.getAttribute("data-id"),elem.getAttribute("data-name"));
   }
-  handleDelete(e){
+  handleDeleteColumn(e){
     e.preventDefault();
-    console.log("delete",e.currentTarget.getAttribute("data-id"))
+    var query=this.state.query;
+    var targetId = e.currentTarget.getAttribute("data-id");
+    console.log('targetId',targetId);
+    var r = confirm("确认删除?");
+    if (r == true) {
+      var url = `/nczl-web/rs/column/delete`;
+      $.ajax({
+        type: 'POST',
+        url: url,
+        data: {
+          id: targetId
+        },
+        dataType: 'json',
+        success: function (rm) {
+          if (rm.code == 1) {
+            this.queryColumnList(this.state.page.curPage);
+          }
+        }.bind(this)
+      })
+    }
   }
   handleInputChange(e){
     e.preventDefault();
@@ -148,7 +167,7 @@ class ColumnPreview extends React.Component {
           <span>
             <a href="#" data-type="edit" data-name={name} data-id={column.id}
                onClick={this.handleEdit.bind(this)}>编辑</a>
-            <a href="#" data-id={column.id} onClick={this.handleDelete.bind(this)}>删除</a>
+            <a href="#" data-id={column.id} onClick={this.handleDeleteColumn.bind(this)}>删除</a>
           </span>
         )
       }

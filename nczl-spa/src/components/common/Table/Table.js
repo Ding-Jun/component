@@ -1,8 +1,6 @@
 /**
  * Created by admin on 2016/10/14.
  */
-import './style'
-
 import React from 'react'
 import TableHeader from './TableHeader'
 import TableRow from './TableRow'

@@ -5,7 +5,6 @@ import React from 'react'
 import Button from '../Button'
 import {omit} from 'lodash'
 import classnames from 'classnames'
-import './style'
 class Modal extends React.Component {
   constructor(props) {
     super(props);

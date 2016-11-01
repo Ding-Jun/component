@@ -1,4 +1,4 @@
-import 'core-js/fn/object/assign';
+//import 'core-js/fn/object/assign';
 import {map} from 'lodash'
 import $ from 'jquery'
 import urlEncode from '../common/urlEncode'
@@ -9,7 +9,7 @@ $(function(){
   $('#searchForm').bind('submit',function (e) {
     e.preventDefault();
     window.location.href =`search.html?keyword=${encodeURIComponent($('#searchForm > .si').val())}`;
-    console.log("youyyyy sumt",$('#searchForm > .si').val())
+    //console.log("youyyyy sumt",$('#searchForm > .si').val())
   })
 
   showTopArticleList();
@@ -29,27 +29,28 @@ var pullDownFlag,pullUpFlag;
 var pullDown,pullUp;
 var spinner;
 var curPage=1;
+
 function positionJudge(){
   if(this.y>40){    //判断下拉
-    pullDown.innerHTML = "放开刷新页面";
-    console.log('放开刷新页面');
+    pullDown.innerHTML = `下拉刷新...`;
+    //console.log('放开刷新页面');
     pullDownFlag = 1;
   }else if(this.y<(this.maxScrollY-40)){   //判断上拉
-    pullUp.innerHTML = "放开刷新页面";
-    console.log('放开刷新页面');
+    pullUp.innerHTML = `<span class="pullUpIcon" id="pull_up_icon"></span><span class="pullUpLabel">上拉加载更多...</span>`;
+    //console.log('放开刷新页面');
     pullUpFlag = 1;
   }
 }
 function action(){
   if(pullDownFlag==1){
     pullDownAction();
-    pullDown.innerHTML = `<img src="../../images/loading.gif"/>`;
-    console.log('下拉刷新');
+    pullDown.innerHTML = `<img src="images/loading.gif"/>`;
+    //console.log('下拉刷新');
     pullDownFlag = 0;
   }else if(pullUpFlag==1){
     pullUpAction();
-    pullUp.innerHTML = `<img src="../../images/loading.gif"/>`;
-    console.log('上拉刷新');
+    pullUp.innerHTML = `<img src="images/loading.gif"/>`;
+    //console.log('上拉刷新');
     pullUpFlag = 0;
   }
 }
@@ -105,7 +106,7 @@ function pullUpAction(){
     pullUp.innerHTML = '';
     if(curPage>page.totalPage){
       curPage=page.totalPage;
-      pullUp.innerHTML = '已经是最后一页';
+      pullUp.innerHTML = '没有更多内容';
     }
     setTimeout(function () { myScroll.refresh(); }, 0);
   });
@@ -113,6 +114,8 @@ function pullUpAction(){
 function updatePosition(){
   pullDown.innerHTML = this.y>>0;
 }
+
+
 document.addEventListener('touchmove', function (e) {
   e.preventDefault();
 }, false);

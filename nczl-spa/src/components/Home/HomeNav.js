@@ -11,7 +11,23 @@ class HomeNav extends React.Component {
     super(props);
     // Operations usually carried out in componentWillMount go here
   }
+  componentDidMount(){
+    var $window = $(window);
+    var initialWindowHeight = null;
 
+    $window.resize(function() {
+      homeslideHeight();
+    });
+
+    function homeslideHeight() {
+
+      var wHeight = $(window).height();
+      var toHeight = wHeight - 83;
+      $(".home-nav , .home-content").height(toHeight);
+
+    }
+    homeslideHeight();
+  }
   render() {
     return (
       <div className="home-nav">

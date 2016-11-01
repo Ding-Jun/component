@@ -7,7 +7,6 @@ import {omit} from 'lodash'
 import classnames from 'classnames'
 import Validator from '../Validator'
 import initEditor from '../util/tinymce'
-import './style'
 /**
  * Validator will removed in future
  */

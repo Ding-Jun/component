@@ -4,6 +4,6 @@
 import ArticleManage from './ArticleManage'
 import ArticleDetail from './ArticleDetail'
 import ArticlePreview from './ArticlePreview'
-
-export {ArticleDetail,ArticlePreview}
+import ArticleCommentList from './ArticleCommentList'
+export {ArticleDetail,ArticlePreview,ArticleCommentList}
 export default ArticleManage;

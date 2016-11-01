@@ -768,7 +768,7 @@ body {
 
 #scroller {
   position: absolute;
-
+  width: 100%;
   /* Prevent elements to be highlighted on tap */
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 

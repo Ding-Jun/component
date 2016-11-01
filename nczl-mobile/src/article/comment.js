@@ -14,10 +14,10 @@ export const showCommentList= (id,targetPage, query,callback) => {
   if(!isNaN(id)){
     $.ajax({
       type: 'GET',
-      url: `/nczl-web/rs/comment/list?curPage=${targetPage}&pageSize=10&objectId=${id}`,
+      url: `/nczl-web/rs/comment/list?curPage=${targetPage}&pageSize=10&status=1&objectId=${id}`,
       dataType: 'json',
       success: function (rm) {
-        console.log('showCommentList rm',rm);
+        //console.log('showCommentList rm',rm);
         if (rm.code == 1) {
           doShowCommentList(rm.result.rowData);
           $('#commentCount').text(`(${rm.result.totalRows})`)
@@ -39,7 +39,7 @@ export const doShowCommentList = (comments)=> {
   var commentList = map(comments, (comment)=>(
     `<li>${comment.content}<div class="cltop"><span>${(new Date(comment.createtime)).Format("yyyy-MM-dd hh:mm:ss")}</span></div></li>`
   ))
-  console.log('doshowCommentList comments',comments,commentList);
+  //console.log('doshowCommentList comments',comments,commentList);
   $('#thelist').append(commentList.join(''));
 }
 
@@ -54,7 +54,7 @@ export const addComment =(objectId,content,onSuccess)=>{
     },
     dataType: 'json',
     success: function (rm) {
-      console.log('rm',rm);
+      //console.log('rm',rm);
       if (rm.code == 1) {
         onSuccess();
       }

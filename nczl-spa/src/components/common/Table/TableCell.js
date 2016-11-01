@@ -12,7 +12,7 @@ class TableCell extends React.Component{
 }
     render(){
         return (
-         <td className={this.props.isOptd?'optd':null} colSpan={this.props.colSpan}>{this.props.children}</td>
+          <td className={this.props.isOptd?'optd':null} colSpan={this.props.colSpan}>{this.props.children}</td>
         )
     }
 }

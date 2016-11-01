@@ -12,9 +12,9 @@ let config = Object.assign({}, baseConfig, {
   entry: {
     //'webpack-dev-server/client?http://127.0.0.1:' + defaultSettings.port,
     //'webpack/hot/only-dev-server',
-    home:'./src/js/home/index',
-    article:'./src/js/article/index',
-    search:'./src/js/search/index'
+    home:'./src/home/index',
+    article:'./src/article/index',
+    search:'./src/search/index'
   },
   output: {
     path: path.join(__dirname, '/../dist/assets'),

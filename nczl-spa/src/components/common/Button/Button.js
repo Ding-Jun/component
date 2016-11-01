@@ -4,7 +4,6 @@
 import React from 'react'
 import classnames from 'classnames'
 import {omit} from 'lodash'
-import './style'
 class Button extends React.Component{
     constructor(props){
       super(props);

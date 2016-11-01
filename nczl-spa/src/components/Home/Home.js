@@ -15,7 +15,9 @@ class Home extends React.Component{
     }
     componentWillMount(){
         //this.actions.login_query()
+
     }
+
     render(){
       const {profile,actions,globalModalOption}=this.props;
       //console.log('globalModalOption',globalModalOption);
