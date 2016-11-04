@@ -23,7 +23,7 @@ class ArticleDetail extends React.Component {
       id: this.props.params.id,
       readOnly: this.props.params.type != 'edit',
       loading: false,
-      article: {columnId: 1},
+      article: {columnId: 1,status:0,stick:0},
 
       columns: [],
       targetImg: "",
@@ -127,14 +127,14 @@ class ArticleDetail extends React.Component {
 
     var $image = $('#img-container > img');
     var dataURL = $image.cropper("getCroppedCanvas", size);
-    var imgurl = dataURL.toDataURL("image/png", 0.5).replace(/^data:image\/(png|jpg);base64,/, '');
+    var imgurl = dataURL.toDataURL("image/jpeg", 0.5).replace(/^data:image\/(png|jpeg);base64,/, '');
     //$("#titleImg").attr("src", imgurl);
 
     $.ajax({
       type: 'POST',
       url:  `/nczl-web/rs/common/uploadImgOfBase64`,
       dataType: 'json',
-      data:{'file':imgurl,'extname':'png'},//{'a':'b'},
+      data:{'file':imgurl,'extname':'jpeg'},//{'a':'b'},
       //processData: false,
       //contentType: false,
       //contentType:'multipart/form-data',
@@ -292,8 +292,8 @@ class ArticleDetail extends React.Component {
         <FromItem label="状态：">
           {readOnly ? status :
             <select value={article.status} name="status" onChange={this.handleFieldChange.bind(this)}>
-              <option value={1}>马上发布</option>
               <option value={0}>停止</option>
+              <option value={1}>马上发布</option>
             </select>}
         </FromItem>
         <FromItem label="置顶：">
@@ -351,7 +351,7 @@ class ArticleDetail extends React.Component {
                onOk={cropping?this.handleCrop.bind(this):(validateError?this.closeModal.bind(this):this.handleOk.bind(this))}
         >{this.state.modalMsg}
           <div className={cropping?null:"hide"} id="img-container" style={{maxHeight: "500px"}}>
-            <img src="../../images/head1.jpg" style={{width: "280px", height: "280px"}}/>
+            <img  style={{width: "280px", height: "280px"}}/>
           </div>
         </Modal>
 

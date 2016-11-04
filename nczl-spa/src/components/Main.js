@@ -1,5 +1,5 @@
 //require('normalize.css/normalize.css');
-import 'styles/App.css'
+//import 'styles/App.css'
 import 'cropper/dist/cropper.min.css'
 
 import Home  from './Home'

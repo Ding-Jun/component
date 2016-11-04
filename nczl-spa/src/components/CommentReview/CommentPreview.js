@@ -224,7 +224,7 @@ class CommentPreview extends React.Component {
   render() {
     const columns = [{title: <input type="checkbox" checked={this.state.checkAll} onChange={this.handleCheckAll.bind(this)}/>, dataIndex: 'check', width: "2%", key: 'check'},
       {title: '评论内容', dataIndex: 'content', width: "55%", key: 'content'},
-      {title: '评论微信号', dataIndex: 'pageviews', width: "12%", key: 'pageviews'},
+      {title: '评论微信号', dataIndex: 'wxnickname', width: "12%", key: 'wxnickname'},
       {title: '发表时间', dataIndex: 'createTime', width: "12%", key: 'createTime'},
       {title: '操作', dataIndex: 'operation', width: "14%", key: 'operation', isOptd: true}];
     var dataList = this.state.page.rowData || [];
@@ -239,8 +239,8 @@ class CommentPreview extends React.Component {
         createTime: new Date(comment.createtime).Format("yyyy-MM-dd"),
         operation: (
           <span>
-            <a href="javascript:void(0);" data-vid={comment.id} onClick={this.handlePassVerify.bind(this)}
-               className="shtg">通过</a> <a href="javascript:void(0);" data-vid={comment.id}
+            <a href="#" data-vid={comment.id} onClick={this.handlePassVerify.bind(this)}
+               className="shtg">通过</a> <a href="#" data-vid={comment.id}
                                           onClick={this.handleNoPassVerify.bind(this)} className="shtg">不通过</a>
           </span>
         )
